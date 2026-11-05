@@ -3,146 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio Pangeran3ce</title>
+    <title>Pangeran | Statistics Portfolio</title>
     
-    <!-- Memuat Ikon Media Sosial -->
+    <!-- Memuat Google Fonts & Ikon Font Awesome -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cloudflare.com">
 
     <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
-        body { background-color: #f7f9fa; color: #333; line-height: 1.6; }
+        :root {
+            --bg-main: #0b1329;
+            --bg-card: #1c2541;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-green: #34d399;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background-color: var(--bg-main); color: var(--text-main); line-height: 1.6; }
         
-        /* Navigasi */
-        nav { background-color: #1e293b; padding: 1rem; position: sticky; top: 0; z-index: 100; text-align: center; }
-        nav button { background: none; border: none; color: #cbd5e1; font-size: 1rem; font-weight: 600; padding: 0.5rem 1.5rem; cursor: pointer; transition: 0.3s; border-bottom: 2px solid transparent; }
-        nav button:hover, nav button.active { color: #fff; border-bottom: 2px solid #38bdf8; }
+        /* Navigasi Modern */
+        nav { background-color: rgba(11, 19, 41, 0.85); backdrop-filter: blur(12px); padding: 1.2rem; position: sticky; top: 0; z-index: 100; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        nav button { background: none; border: none; color: var(--text-muted); font-size: 0.95rem; font-weight: 600; padding: 0.6rem 1.5rem; cursor: pointer; transition: 0.3s; border-radius: 20px; margin: 0 0.2rem; }
+        nav button:hover, nav button.active { color: var(--accent); background-color: rgba(56, 189, 248, 0.1); }
         
         /* Kontainer Utama */
-        .container { max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem; }
-        .page { display: none; background: #fff; padding: 2.5rem; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
-        .page.active { display: block; animation: fadeIn 0.4s ease; }
+        .container { max-width: 1000px; margin: 3rem auto; padding: 0 1.5rem; }
+        .page { display: none; background: var(--bg-card); padding: 3rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.03); box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5); }
+        .page.active { display: block; animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
         
-        /* Gaya Komponen Foto Diri & Hero (Home) */
-        .hero { text-align: center; padding: 2rem 0; }
-        .profile-img { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 5px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.15); margin-bottom: 1.5rem; }
-        .hero h1 { font-size: 2.5rem; color: #0f172a; margin-bottom: 0.5rem; }
+        /* Halaman Home - Statistika Theme */
+        .hero { text-align: center; padding: 1.5rem 0; }
+        .profile-img-container { position: relative; width: 180px; height: 180px; margin: 0 auto 2rem auto; }
+        .profile-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 4px solid var(--accent); padding: 5px; background: var(--bg-main); }
+        .stats-overlay { position: absolute; bottom: 5px; right: 5px; background: var(--accent-green); color: var(--bg-main); padding: 6px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; font-family: 'JetBrains Mono', monospace; box-shadow: 0 4px 10px rgba(52, 211, 153, 0.4); }
+        .hero h1 { font-size: 2.8rem; color: var(--text-main); margin-bottom: 0.5rem; font-weight: 700; letter-spacing: -0.02em; }
+        .tagline { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-size: 1.1rem; margin-bottom: 1.5rem; }
         
-        /* Data Diri */
-        .info-list { list-style: none; margin: 1.5rem 0; font-size: 1.1rem; text-align: left; max-width: 400px; margin: 1.5rem auto; }
-        .info-list li { margin: 0.7rem 0; }
-        .info-list i { color: #0284c7; width: 30px; }
+        /* Konsep Quote Statistik */
+        .stat-quote { background: rgba(255,255,255,0.02); border-left: 4px solid var(--accent); padding: 1rem 1.5rem; border-radius: 0 8px 8px 0; max-width: 600px; margin: 2rem auto 0 auto; text-align: left; }
+        .stat-quote p { font-style: italic; color: var(--text-muted); font-size: 0.95rem; }
+        .stat-quote span { display: block; margin-top: 0.5rem; color: var(--text-main); font-weight: 600; font-size: 0.85rem; }
+
+        /* Gaya Data List (About / Profile) */
+        h2 { font-size: 1.8rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--text-main); display: flex; align-items: center; gap: 0.7rem; }
+        h2 i { color: var(--accent); }
+        .info-list { list-style: none; max-width: 450px; margin: 2rem auto; }
+        .info-list li { margin: 1rem 0; padding-bottom: 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: left; font-size: 1.05rem; display: flex; align-items: center; }
+        .info-list i { color: var(--accent); width: 35px; font-size: 1.1rem; }
+        .info-list strong { color: var(--text-muted); font-weight: 500; width: 140px; display: inline-block; }
         
-        /* Ikon Media Sosial */
-        .social-links { display: flex; justify-content: center; gap: 1.5rem; margin-top: 1.5rem; }
-        .social-links a { color: #475569; font-size: 2.2rem; transition: 0.3s; text-decoration: none; }
-        .social-links a:hover { color: #0284c7; transform: translateY(-5px); }
-        
-        /* Galeri Foto Portofolio */
+        /* Grid Keahlian / Core Skills */
+        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
+        .skill-box { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 1.2rem; border-radius: 10px; text-align: center; transition: 0.3s; }
+        .skill-box:hover { transform: translateY(-3px); border-color: var(--accent); background: rgba(56, 189, 248, 0.02); }
+        .skill-box i { font-size: 1.8rem; color: var(--accent); margin-bottom: 0.7rem; }
+        .skill-box h4 { font-size: 1.05rem; margin-bottom: 0.3rem; }
+        .skill-box p { font-size: 0.85rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
+
+        /* Galeri Grid Modern (Portfolio) */
         .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
-        .gallery-item { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.05); text-align: left; }
-        .gallery-item img { width: 100%; height: 220px; object-fit: cover; display: block; background-color: #cbd5e1; }
-        .gallery-desc { padding: 1rem; }
-        .gallery-desc h3 { font-size: 1.2rem; margin-bottom: 0.5rem; color: #0f172a; }
-        .gallery-desc p { color: #64748b; font-size: 0.95rem; }
+        .gallery-item { background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; overflow: hidden; transition: 0.3s; text-align: left; }
+        .gallery-item:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+        .gallery-item img { width: 100%; height: 200px; object-fit: cover; display: block; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .gallery-desc { padding: 1.5rem; }
+        .gallery-desc h3 { font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--text-main); font-weight: 600; }
+        .gallery-desc p { color: var(--text-muted); font-size: 0.9rem; }
         
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+        /* Sosial Media Footer */
+        .social-links { display: flex; justify-content: center; gap: 1.5rem; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.05); }
+        .social-links a { color: var(--text-muted); font-size: 2rem; transition: 0.3s; text-decoration: none; }
+        .social-links a:hover { color: var(--accent); transform: translateY(-4px); }
+        
+        @keyframes slideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
-    <!-- Tombol Navigasi Pindah Halaman Langsung Aktif -->
+    <!-- Navigasi Menu Dashboard -->
     <nav>
-        <button id="btn-home" class="active" onclick="bukaHalaman('home')">Home</button>
-        <button id="btn-about" onclick="bukaHalaman('about')">About</button>
-        <button id="btn-portfolio" onclick="bukaHalaman('portfolio')">Portfolio</button>
-        <button id="btn-profile" onclick="bukaHalaman('profile')">Profile</button>
+        <button id="btn-home" class="active" onclick="bukaHalaman('home')"><i class="fa-solid fa-chart-pie"></i> Home</button>
+        <button id="btn-about" onclick="bukaHalaman('about')"><i class="fa-solid fa-terminal"></i> About</button>
+        <button id="btn-portfolio" onclick="bukaHalaman('portfolio')"><i class="fa-solid fa-database"></i> Portfolio</button>
+        <button id="btn-profile" onclick="bukaHalaman('profile')"><i class="fa-solid fa-sliders"></i> Profile</button>
     </nav>
 
     <div class="container">
         <!-- HALAMAN HOME -->
         <section id="page-home" class="page active">
             <div class="hero">
-                <img src="foto-profil.jpeg" alt="Foto Profil Pangeran" class="profile-img">
-                <h1>Halo, Saya Pangeran</h1>
-                <p style="font-size: 1.2rem; color: #64748b;">Selamat datang di web portofolio resmi saya.</p>
+                <div class="profile-img-container">
+                    <img src="foto-profil.jpeg" alt="Pangeran" class="profile-img">
+                    <div class="stats-overlay">μ = Pangeran</div>
+                </div>
+                <h1>Pangeran</h1>
+                <div class="tagline">Data Speaks. We Translate. | Statistics Student</div>
+                <p style="font-size: 1.1rem; color: var(--text-muted); max-width: 600px; margin: 0 auto;">
+                    Selamat datang di ruang portofolio digital saya. Berfokus pada analisis data kuantitatif, pemodelan statistik stokastik, dan komputasi sains data.
+                </p>
+                <div class="stat-quote">
+                    <p>"In God we trust, all others must bring data."</p>
+                    <span>— W. Edwards Deming</span>
+                </div>
             </div>
         </section>
 
         <!-- HALAMAN ABOUT -->
         <section id="page-about" class="page">
-            <h2>Tentang Saya</h2>
-            <p style="margin-top: 1rem;">Tuliskan cerita singkat tentang diri Anda di sini. Misalnya latar belakang pendidikan, minat Anda di dunia teknologi, keahlian khusus, atau visi misi hidup Anda.</p>
+            <h2><i class="fa-solid fa-chart-line"></i> Metode & Kompetensi</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">Saya mempelajari pola, mengekstrak informasi, dan mereduksi ketidakpastian dari kompleksitas sekumpulan data murni guna mendukung pengambilan keputusan berbasis bukti empiris.</p>
+            
+            <div class="skills-grid">
+                <div class="skill-box">
+                    <i class="fa-solid fa-square-root-variable"></i>
+                    <h4>Analisis Prediktif</h4>
+                    <p>Regresi & Time Series</p>
+                </div>
+                <div class="skill-box">
+                    <i class="fa-solid fa-laptop-code"></i>
+                    <h4>Komputasi Data</h4>
+                    <p>R, Python, SPSS</p>
+                </div>
+                <div class="skill-box">
+                    <i class="fa-solid fa-vial-circle-check"></i>
+                    <h4>Uji Hipotesis</h4>
+                    <p>Parametrik & Non-Para</p>
+                </div>
+                <div class="skill-box">
+                    <i class="fa-solid fa-chart-simple"></i>
+                    <h4>Visualisasi Data</h4>
+                    <p>ggplot2, Seaborn, Tableau</p>
+                </div>
+            </div>
         </section>
 
         <!-- HALAMAN PORTFOLIO -->
         <section id="page-portfolio" class="page">
-            <h2>Dokumentasi Kegiatan</h2>
-            <p style="color: #64748b; margin-bottom: 1.5rem;">Berikut adalah beberapa foto kegiatan yang pernah saya ikuti sebelumnya:</p>
+            <h2><i class="fa-solid fa-folder-open"></i> Eksplorasi & Kegiatan</h2>
+            <p style="color: var(--text-muted); margin-bottom: 2rem;">Dokumentasi riwayat riset lapangan, survei, kepanitiaan, dan aktivitas akademik yang telah saya selesaikan:</p>
             
             <div class="gallery">
                 <div class="gallery-item">
                     <img src="kegiatan1.jpeg" alt="Foto Kegiatan 1"> 
-                    <div class="gallery-desc"><h3>Nama Kegiatan 1</h3><p>Deskripsi singkat kegiatan pertama.</p></div>
-                </div>
-                <div class="gallery-item">
-                    <img src="kegiatan2.jpeg" alt="Foto Kegiatan 2">
-                    <div class="gallery-desc"><h3>Nama Kegiatan 2</h3><p>Deskripsi singkat kegiatan kedua.</p></div>
-                </div>
-                <div class="gallery-item">
-                    <img src="kegiatan3.jpeg" alt="Foto Kegiatan 3">
-                    <div class="gallery-desc"><h3>Nama Kegiatan 3</h3><p>Deskripsi singkat kegiatan ketiga.</p></div>
-                </div>
-                <div class="gallery-item">
-                    <img src="kegiatan4.jpeg" alt="Foto Kegiatan 4">
-                    <div class="gallery-desc"><h3>Nama Kegiatan 4</h3><p>Deskripsi singkat kegiatan keempat.</p></div>
-                </div>
-                <div class="gallery-item">
-                    <img src="kegiatan5.jpeg" alt="Foto Kegiatan 5">
-                    <div class="gallery-desc"><h3>Nama Kegiatan 5</h3><p>Deskripsi singkat kegiatan kelima.</p></div>
-                </div>
-                <div class="gallery-item">
-                    <img src="kegiatan6.jpeg" alt="Foto Kegiatan 6">
-                    <div class="gallery-desc"><h3>Nama Kegiatan 6</h3><p>Deskripsi singkat kegiatan keenam.</p></div>
-                </div>
-            </div>
-        </section>
-
-        <!-- HALAMAN PROFILE -->
-        <section id="page-profile" class="page">
-            <h2>Profil & Kontak</h2>
-            <ul class="info-list">
-                <li><i class="fa-solid fa-user"></i> <strong>Nama Lengkap:</strong> Pangeran</li>
-                <li><i class="fa-solid fa-envelope"></i> <strong>Email:</strong> pangeran@example.com</li>
-                <li><i class="fa-solid fa-phone"></i> <strong>No. Telepon:</strong> +62 812-3456-7890</li>
-                <li><i class="fa-solid fa-location-dot"></i> <strong>Lokasi:</strong> Indonesia</li>
-            </ul>
-
-            <h3 style="margin-top: 2rem; border-top: 1px solid #e2e8f0; padding-top: 1.5rem; text-align: center;">Media Sosial</h3>
-            <div class="social-links">
-                <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://linkedin.com" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="https://github.com" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
-            </div>
-        </section>
-    </div>
-
-    <!-- Logika Navigasi Super Ringan & Instan -->
-    <script>
-        function bukaHalaman(namaHalaman) {
-            const semuaHalaman = ['home', 'about', 'portfolio', 'profile'];
-            semuaHalaman.forEach(hlmn => {
-                const elemenPage = document.getElementById(`page-${hlmn}`);
-                const elemenBtn = document.getElementById(`btn-${hlmn}`);
-                
-                if (hlmn === namaHalaman) {
-                    elemenPage.classList.add("active");
-                    elemenBtn.classList.add("active");
-                } else {
-                    elemenPage.classList.remove("active");
-                    elemenBtn.classList.remove("active");
-                }
-            });
-        }
-    </script>
-</body>
-</html>
