@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portofolio Pangeran3ce</title>
     
-    <!-- Memuat Font Awesome untuk Ikon Media Sosial -->
+    <!-- Memuat Ikon Media Sosial -->
     <link rel="stylesheet" href="https://cloudflare.com">
 
     <style>
@@ -14,13 +14,13 @@
         
         /* Navigasi */
         nav { background-color: #1e293b; padding: 1rem; position: sticky; top: 0; z-index: 100; text-align: center; }
-        nav button { background: none; border: none; color: #cbd5e1; font-size: 1rem; font-weight: 600; padding: 0.5rem 1.5rem; cursor: pointer; transition: 0.3s; }
+        nav button { background: none; border: none; color: #cbd5e1; font-size: 1rem; font-weight: 600; padding: 0.5rem 1.5rem; cursor: pointer; transition: 0.3s; border-bottom: 2px solid transparent; }
         nav button:hover, nav button.active { color: #fff; border-bottom: 2px solid #38bdf8; }
         
         /* Kontainer Utama */
         .container { max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem; }
         .page { display: none; background: #fff; padding: 2.5rem; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
-        .page.active { display: block; animation: fadeIn 0.5s ease; }
+        .page.active { display: block; animation: fadeIn 0.4s ease; }
         
         /* Gaya Komponen Foto Diri & Hero (Home) */
         .hero { text-align: center; padding: 2rem 0; }
@@ -28,8 +28,8 @@
         .hero h1 { font-size: 2.5rem; color: #0f172a; margin-bottom: 0.5rem; }
         
         /* Data Diri */
-        .info-list { list-style: none; margin: 1.5rem 0; font-size: 1.1rem; }
-        .info-list li { margin: 0.5rem 0; }
+        .info-list { list-style: none; margin: 1.5rem 0; font-size: 1.1rem; text-align: left; max-width: 400px; margin: 1.5rem auto; }
+        .info-list li { margin: 0.7rem 0; }
         .info-list i { color: #0284c7; width: 30px; }
         
         /* Ikon Media Sosial */
@@ -39,32 +39,32 @@
         
         /* Galeri Foto Portofolio */
         .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
-        .gallery-item { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .gallery-item { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.05); text-align: left; }
         .gallery-item img { width: 100%; height: 220px; object-fit: cover; display: block; background-color: #cbd5e1; }
         .gallery-desc { padding: 1rem; }
         .gallery-desc h3 { font-size: 1.2rem; margin-bottom: 0.5rem; color: #0f172a; }
         .gallery-desc p { color: #64748b; font-size: 0.95rem; }
         
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
-    <!-- Tombol Navigasi Pindah Halaman -->
+    <!-- Tombol Navigasi Pindah Halaman Langsung Aktif -->
     <nav>
-        <button id="btn-home" class="active" py-click="buka_halaman('home')">Home</button>
-        <button id="btn-about" py-click="buka_halaman('about')">About</button>
-        <button id="btn-portfolio" py-click="buka_halaman('portfolio')">Portfolio</button>
-        <button id="btn-profile" py-click="buka_halaman('profile')">Profile</button>
+        <button id="btn-home" class="active" onclick="bukaHalaman('home')">Home</button>
+        <button id="btn-about" onclick="bukaHalaman('about')">About</button>
+        <button id="btn-portfolio" onclick="bukaHalaman('portfolio')">Portfolio</button>
+        <button id="btn-profile" onclick="bukaHalaman('profile')">Profile</button>
     </nav>
 
     <div class="container">
-        <!-- HALAMAN HOME (Menampilkan Foto Profil Utama) -->
+        <!-- HALAMAN HOME -->
         <section id="page-home" class="page active">
             <div class="hero">
                 <img src="foto-profil.jpeg" alt="Foto Profil Pangeran" class="profile-img">
                 <h1>Halo, Saya Pangeran</h1>
-                <p style="font-size: 1.2rem; color: #64748b;">Selamat datang di web portofolio resmi saya yang didukung oleh pemrograman Python.</p>
+                <p style="font-size: 1.2rem; color: #64748b;">Selamat datang di web portofolio resmi saya.</p>
             </div>
         </section>
 
@@ -74,7 +74,7 @@
             <p style="margin-top: 1rem;">Tuliskan cerita singkat tentang diri Anda di sini. Misalnya latar belakang pendidikan, minat Anda di dunia teknologi, keahlian khusus, atau visi misi hidup Anda.</p>
         </section>
 
-        <!-- HALAMAN PORTFOLIO (Halaman Foto-Foto Kegiatan) -->
+        <!-- HALAMAN PORTFOLIO -->
         <section id="page-portfolio" class="page">
             <h2>Dokumentasi Kegiatan</h2>
             <p style="color: #64748b; margin-bottom: 1.5rem;">Berikut adalah beberapa foto kegiatan yang pernah saya ikuti sebelumnya:</p>
@@ -107,7 +107,7 @@
             </div>
         </section>
 
-        <!-- HALAMAN PROFILE (Data Diri & Medsos Resmi) -->
+        <!-- HALAMAN PROFILE -->
         <section id="page-profile" class="page">
             <h2>Profil & Kontak</h2>
             <ul class="info-list">
@@ -117,9 +117,8 @@
                 <li><i class="fa-solid fa-location-dot"></i> <strong>Lokasi:</strong> Indonesia</li>
             </ul>
 
-            <h3 style="margin-top: 2rem; border-top: 1px solid #e2e8f0; padding-top: 1.5rem;">Media Sosial</h3>
+            <h3 style="margin-top: 2rem; border-top: 1px solid #e2e8f0; padding-top: 1.5rem; text-align: center;">Media Sosial</h3>
             <div class="social-links">
-                <!-- Ganti tanda pagar '#' dengan tautan akun profil media sosial Anda -->
                 <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
                 <a href="https://linkedin.com" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
                 <a href="https://github.com" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
@@ -127,25 +126,23 @@
         </section>
     </div>
 
-    <!-- Memuat PyScript di Akhir agar tidak Merusak Tampilan CSS Utama -->
-    <link rel="stylesheet" href="https://pyscript.net" />
-    <script type="module" src="https://pyscript.net"></script>
-
-    <!-- LOGIKA UTAMA PYTHON (PyScript) -->
-    <script type="py">
-        from js import document
-
-        def buka_halaman(nama_halaman):
-            semua_halaman = ['home', 'about', 'portfolio', 'profile']
-            for hlmn in semua_halaman:
-                elemen_page = document.getElementById(f"page-{hlmn}")
-                elemen_btn = document.getElementById(f"btn-{hlmn}")
-                if hlmn == nama_halaman:
-                    elemen_page.classList.add("active")
-                    elemen_btn.classList.add("active")
-                else:
-                    elemen_page.classList.remove("active")
-                    elemen_btn.classList.remove("active")
+    <!-- Logika Navigasi Super Ringan & Instan -->
+    <script>
+        function bukaHalaman(namaHalaman) {
+            const semuaHalaman = ['home', 'about', 'portfolio', 'profile'];
+            semuaHalaman.forEach(hlmn => {
+                const elemenPage = document.getElementById(`page-${hlmn}`);
+                const elemenBtn = document.getElementById(`btn-${hlmn}`);
+                
+                if (hlmn === namaHalaman) {
+                    elemenPage.classList.add("active");
+                    elemenBtn.classList.add("active");
+                } else {
+                    elemenPage.classList.remove("active");
+                    elemenBtn.classList.remove("active");
+                }
+            });
+        }
     </script>
 </body>
 </html>
