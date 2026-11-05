@@ -1,56 +1,151 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portofolio Pangeran3ce</title>
+    
+    <!-- Memuat Font Awesome untuk Ikon Media Sosial -->
+    <link rel="stylesheet" href="https://cloudflare.com">
+
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
+        body { background-color: #f7f9fa; color: #333; line-height: 1.6; }
+        
+        /* Navigasi */
+        nav { background-color: #1e293b; padding: 1rem; position: sticky; top: 0; z-index: 100; text-align: center; }
+        nav button { background: none; border: none; color: #cbd5e1; font-size: 1rem; font-weight: 600; padding: 0.5rem 1.5rem; cursor: pointer; transition: 0.3s; }
+        nav button:hover, nav button.active { color: #fff; border-bottom: 2px solid #38bdf8; }
+        
+        /* Kontainer Utama */
+        .container { max-width: 1000px; margin: 2rem auto; padding: 0 1.5rem; }
+        .page { display: none; background: #fff; padding: 2.5rem; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1); }
+        .page.active { display: block; animation: fadeIn 0.5s ease; }
+        
+        /* Gaya Komponen Foto Diri & Hero (Home) */
+        .hero { text-align: center; padding: 2rem 0; }
+        .profile-img { width: 180px; height: 180px; border-radius: 50%; object-fit: cover; border: 5px solid #fff; box-shadow: 0 4px 10px rgba(0,0,0,0.15); margin-bottom: 1.5rem; }
+        .hero h1 { font-size: 2.5rem; color: #0f172a; margin-bottom: 0.5rem; }
+        
+        /* Data Diri */
+        .info-list { list-style: none; margin: 1.5rem 0; font-size: 1.1rem; }
+        .info-list li { margin: 0.5rem 0; }
+        .info-list i { color: #0284c7; width: 30px; }
+        
+        /* Ikon Media Sosial */
+        .social-links { display: flex; justify-content: center; gap: 1.5rem; margin-top: 1.5rem; }
+        .social-links a { color: #475569; font-size: 2.2rem; transition: 0.3s; text-decoration: none; }
+        .social-links a:hover { color: #0284c7; transform: translateY(-5px); }
+        
+        /* Galeri Foto Portofolio */
+        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+        .gallery-item { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 6px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .gallery-item img { width: 100%; height: 220px; object-fit: cover; display: block; background-color: #cbd5e1; }
+        .gallery-desc { padding: 1rem; }
+        .gallery-desc h3 { font-size: 1.2rem; margin-bottom: 0.5rem; color: #0f172a; }
+        .gallery-desc p { color: #64748b; font-size: 0.95rem; }
+        
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    </style>
+</head>
+<body>
+
+    <!-- Tombol Navigasi Pindah Halaman -->
+    <nav>
+        <button id="btn-home" class="active" py-click="buka_halaman('home')">Home</button>
+        <button id="btn-about" py-click="buka_halaman('about')">About</button>
+        <button id="btn-portfolio" py-click="buka_halaman('portfolio')">Portfolio</button>
+        <button id="btn-profile" py-click="buka_halaman('profile')">Profile</button>
+    </nav>
+
+    <div class="container">
+        <!-- HALAMAN HOME (Menampilkan Foto Profil Utama) -->
+        <section id="page-home" class="page active">
+            <div class="hero">
+                <img src="foto-profil.jpeg" alt="Foto Profil Pangeran" class="profile-img">
+                <h1>Halo, Saya Pangeran</h1>
+                <p style="font-size: 1.2rem; color: #64748b;">Selamat datang di web portofolio resmi saya yang didukung oleh pemrograman Python.</p>
+            </div>
+        </section>
+
+        <!-- HALAMAN ABOUT -->
+        <section id="page-about" class="page">
+            <h2>Tentang Saya</h2>
+            <p style="margin-top: 1rem;">Tuliskan cerita singkat tentang diri Anda di sini. Misalnya latar belakang pendidikan, minat Anda di dunia teknologi, keahlian khusus, atau visi misi hidup Anda.</p>
+        </section>
+
         <!-- HALAMAN PORTFOLIO (Halaman Foto-Foto Kegiatan) -->
         <section id="page-portfolio" class="page">
             <h2>Dokumentasi Kegiatan</h2>
             <p style="color: #64748b; margin-bottom: 1.5rem;">Berikut adalah beberapa foto kegiatan yang pernah saya ikuti sebelumnya:</p>
             
             <div class="gallery">
-                <!-- Kegiatan 1 -->
                 <div class="gallery-item">
-                    <img src="kegiatan1.jpg" alt="Foto Kegiatan 1"> 
-                    <div class="gallery-desc">
-                        <h3>Nama Kegiatan 1</h3>
-                        <p>Deskripsi singkat mengenai apa yang Anda lakukan pada kegiatan ini dan kapan terjadinya.</p>
-                    </div>
+                    <img src="kegiatan1.jpeg" alt="Foto Kegiatan 1"> 
+                    <div class="gallery-desc"><h3>Nama Kegiatan 1</h3><p>Deskripsi singkat kegiatan pertama.</p></div>
                 </div>
-                <!-- Kegiatan 2 -->
                 <div class="gallery-item">
-                    <img src="kegiatan2.jpg" alt="Foto Kegiatan 2">
-                    <div class="gallery-desc">
-                        <h3>Nama Kegiatan 2</h3>
-                        <p>Deskripsi singkat mengenai pencapaian atau peran Anda dalam kegiatan kedua.</p>
-                    </div>
+                    <img src="kegiatan2.jpeg" alt="Foto Kegiatan 2">
+                    <div class="gallery-desc"><h3>Nama Kegiatan 2</h3><p>Deskripsi singkat kegiatan kedua.</p></div>
                 </div>
-                <!-- Kegiatan 3 -->
                 <div class="gallery-item">
-                    <img src="kegiatan3.jpg" alt="Foto Kegiatan 3">
-                    <div class="gallery-desc">
-                        <h3>Nama Kegiatan 3</h3>
-                        <p>Deskripsi singkat mengenai pencapaian atau peran Anda dalam kegiatan ketiga.</p>
-                    </div>
+                    <img src="kegiatan3.jpeg" alt="Foto Kegiatan 3">
+                    <div class="gallery-desc"><h3>Nama Kegiatan 3</h3><p>Deskripsi singkat kegiatan ketiga.</p></div>
                 </div>
-                <!-- Kegiatan 4 -->
                 <div class="gallery-item">
-                    <img src="kegiatan4.jpg" alt="Foto Kegiatan 4">
-                    <div class="gallery-desc">
-                        <h3>Nama Kegiatan 4</h3>
-                        <p>Deskripsi singkat mengenai pencapaian atau peran Anda dalam kegiatan keempat.</p>
-                    </div>
+                    <img src="kegiatan4.jpeg" alt="Foto Kegiatan 4">
+                    <div class="gallery-desc"><h3>Nama Kegiatan 4</h3><p>Deskripsi singkat kegiatan keempat.</p></div>
                 </div>
-                <!-- Kegiatan 5 -->
                 <div class="gallery-item">
-                    <img src="kegiatan5.jpg" alt="Foto Kegiatan 5">
-                    <div class="gallery-desc">
-                        <h3>Nama Kegiatan 5</h3>
-                        <p>Deskripsi singkat mengenai pencapaian atau peran Anda dalam kegiatan kelima.</p>
-                    </div>
+                    <img src="kegiatan5.jpeg" alt="Foto Kegiatan 5">
+                    <div class="gallery-desc"><h3>Nama Kegiatan 5</h3><p>Deskripsi singkat kegiatan kelima.</p></div>
                 </div>
-                <!-- Kegiatan 6 -->
                 <div class="gallery-item">
-                    <img src="kegiatan6.jpg" alt="Foto Kegiatan 6">
-                    <div class="gallery-desc">
-                        <h3>Nama Kegiatan 6</h3>
-                        <p>Deskripsi singkat mengenai pencapaian atau peran Anda dalam kegiatan keenam.</p>
-                    </div>
+                    <img src="kegiatan6.jpeg" alt="Foto Kegiatan 6">
+                    <div class="gallery-desc"><h3>Nama Kegiatan 6</h3><p>Deskripsi singkat kegiatan keenam.</p></div>
                 </div>
             </div>
         </section>
+
+        <!-- HALAMAN PROFILE (Data Diri & Medsos Resmi) -->
+        <section id="page-profile" class="page">
+            <h2>Profil & Kontak</h2>
+            <ul class="info-list">
+                <li><i class="fa-solid fa-user"></i> <strong>Nama Lengkap:</strong> Pangeran</li>
+                <li><i class="fa-solid fa-envelope"></i> <strong>Email:</strong> pangeran@example.com</li>
+                <li><i class="fa-solid fa-phone"></i> <strong>No. Telepon:</strong> +62 812-3456-7890</li>
+                <li><i class="fa-solid fa-location-dot"></i> <strong>Lokasi:</strong> Indonesia</li>
+            </ul>
+
+            <h3 style="margin-top: 2rem; border-top: 1px solid #e2e8f0; padding-top: 1.5rem;">Media Sosial</h3>
+            <div class="social-links">
+                <!-- Ganti tanda pagar '#' dengan tautan akun profil media sosial Anda -->
+                <a href="https://instagram.com" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://linkedin.com" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://github.com" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+            </div>
+        </section>
+    </div>
+
+    <!-- Memuat PyScript di Akhir agar tidak Merusak Tampilan CSS Utama -->
+    <link rel="stylesheet" href="https://pyscript.net" />
+    <script type="module" src="https://pyscript.net"></script>
+
+    <!-- LOGIKA UTAMA PYTHON (PyScript) -->
+    <script type="py">
+        from js import document
+
+        def buka_halaman(nama_halaman):
+            semua_halaman = ['home', 'about', 'portfolio', 'profile']
+            for hlmn in semua_halaman:
+                elemen_page = document.getElementById(f"page-{hlmn}")
+                elemen_btn = document.getElementById(f"btn-{hlmn}")
+                if hlmn == nama_halaman:
+                    elemen_page.classList.add("active")
+                    elemen_btn.classList.add("active")
+                else:
+                    elemen_page.classList.remove("active")
+                    elemen_btn.classList.remove("active")
+    </script>
+</body>
+</html>
