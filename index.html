@@ -203,35 +203,72 @@
     </div>
 </section>
 <style>
-        .profile-container {
+                .profile-container {
             display: flex;
-            align-items: center;
+            align-items: center; /* Membuat teks dan foto sejajar secara vertikal di tengah */
             justify-content: space-between;
-            gap: 30px;
-            margin-top: 20px;
+            gap: 40px; /* Memberi jarak horizontal yang pas antara teks dan foto */
+            margin-top: 30px;
         }
+        
         .profile-info {
-            flex: 1;
+            flex: 1.2; /* Memberikan ruang sedikit lebih luas untuk area teks */
         }
+
+        /* Mengatur agar titik dua (:) dan isi teks sejajar rapi */
+        .info-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 25px 0;
+        }
+
+        .info-list li {
+            display: grid;
+            grid-template-columns: 35px 140px auto; /* Kolom 1: Icon, Kolom 2: Label, Kolom 3: Isi data */
+            align-items: center;
+            margin-bottom: 15px;
+            font-size: 16px;
+        }
+
+        /* Mengatur posisi ikon media sosial agar sejajar di bawah teks */
+        .social-links {
+            display: flex;
+            gap: 15px;
+            padding-left: 35px; /* Menyesuaikan agar lurus dengan mulainya teks data */
+        }
+        
+        /* Mengatur ukuran foto agar lebih besar dan proporsional */
         .profile-photo {
-            flex: 1;
+            flex: 0.8;
             display: flex;
             justify-content: center;
+            align-items: center;
         }
+        
         .profile-photo img {
-            max-width: 250px;
+            width: 100%;
+            max-width: 300px; /* Ukuran maksimal foto ditingkatkan agar lebih besar */
             height: auto;
             object-fit: cover;
+            display: block;
         }
+        
+        /* Pengaturan responsif untuk tampilan HP */
         @media (max-width: 768px) {
             .profile-container {
                 flex-direction: column-reverse;
-                text-align: center;
+                gap: 25px;
+            }
+            .info-list li {
+                grid-template-columns: 30px 120px auto;
+                font-size: 14px;
             }
             .social-links {
+                padding-left: 0;
                 justify-content: center;
             }
         }
+
     </style>
     <script>
         function bukaHalaman(fungsi) {
