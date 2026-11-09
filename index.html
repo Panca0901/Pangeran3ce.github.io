@@ -174,13 +174,18 @@
         </section>
 
         <section id="page-profile" class="page">
-            <h2><i class="fa-solid fa-id-card"></i> Connect With Me</h2>
+    <h2><i class="fa-solid fa-id-card"></i> Connect With Me</h2>
+    
+    <!-- Bungkus baru untuk membagi kolom kiri & kanan -->
+    <div class="profile-container">
+        
+        <!-- Kolom Kiri: Informasi Kontak -->
+        <div class="profile-info">
             <ul class="info-list">
                 <li><i class="fa-solid fa-signature"></i> <strong>Nama Lengkap:</strong> Pangeran Candraning Edhi</li>
                 <li><i class="fa-solid fa-envelope-open-text"></i> <strong>Email:</strong> pangeran3ce@gmail.com</li>
                 <li><i class="fa-solid fa-mobile-screen-button"></i> <strong>No. Telepon:</strong> +62 813-6370-2015</li>
-                <li><i class="fa-solid fa-network-wired"></i> <strong>Bidang Peminatan:</strong> Data Science & Quantitative Analyst
-</li>
+                <li><i class="fa-solid fa-network-wired"></i> <strong>Bidang Peminatan:</strong> Data Science & Quantitative Analyst</li>
             </ul>
 
             <div class="social-links">
@@ -188,9 +193,46 @@
                 <a href="https://www.linkedin.com/in/pangeran-candraning-edhi-aa96683bb" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
                 <a href="https://github.com/Panca0901" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
             </div>
-        </section>
-    </div>
+        </div>
 
+        <!-- Kolom Kanan: Foto Profil Tanpa Background -->
+        <div class="profile-photo">
+            <img src="no bc.png" alt="Foto Pangeran">
+        </div>
+
+    </div>
+</section>
+<style>
+        .profile-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .profile-info {
+            flex: 1;
+        }
+        .profile-photo {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+        }
+        .profile-photo img {
+            max-width: 250px;
+            height: auto;
+            object-fit: cover;
+        }
+        @media (max-width: 768px) {
+            .profile-container {
+                flex-direction: column-reverse;
+                text-align: center;
+            }
+            .social-links {
+                justify-content: center;
+            }
+        }
+    </style>
     <script>
         function bukaHalaman(fungsi) {
             const semuaHalaman = ['home', 'about', 'portfolio', 'profile'];
