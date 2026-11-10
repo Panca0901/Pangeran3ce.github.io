@@ -12,72 +12,409 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
-        :root {
-            --bg-main: #0b1329;
-            --bg-card: #1c2541;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent: #38bdf8;
-            --accent-green: #34d399;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css');
 
-        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
-        body { background-color: var(--bg-main); color: var(--text-main); line-height: 1.6; }
-        
-        /* Navigasi Modern */
-        nav { background-color: rgba(11, 19, 41, 0.85); backdrop-filter: blur(12px); padding: 1.2rem; position: sticky; top: 0; z-index: 100; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        nav button { background: none; border: none; color: var(--text-muted); font-size: 0.95rem; font-weight: 600; padding: 0.6rem 1.5rem; cursor: pointer; transition: 0.3s; border-radius: 20px; margin: 0 0.2rem; }
-        nav button:hover, nav button.active { color: var(--accent); background-color: rgba(56, 189, 248, 0.1); }
-        
-        /* Kontainer Utama */
-        .container { max-width: 1000px; margin: 3rem auto; padding: 0 1.5rem; }
-        .page { display: none; background: var(--bg-card); padding: 3rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.03); box-shadow: 0 10px 30px -10px rgba(0,0,0,0.5); }
-        .page.active { display: block; animation: slideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-        
-        /* Halaman Home - Statistika Theme */
-        .hero { text-align: center; padding: 1.5rem 0; }
-        .profile-img-container { position: relative; width: 180px; height: 180px; margin: 0 auto 2rem auto; }
-        .profile-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 4px solid var(--accent); padding: 5px; background: var(--bg-main); }
-        .stats-overlay { position: absolute; bottom: 5px; right: 5px; background: var(--accent-green); color: var(--bg-main); padding: 6px 10px; border-radius: 20px; font-size: 0.75rem; font-weight: 700; font-family: 'JetBrains Mono', monospace; box-shadow: 0 4px 10px rgba(52, 211, 153, 0.4); }
-        .hero h1 { font-size: 2.8rem; color: var(--text-main); margin-bottom: 0.5rem; font-weight: 700; letter-spacing: -0.02em; }
-        .tagline { font-family: 'JetBrains Mono', monospace; color: var(--accent); font-size: 1.1rem; margin-bottom: 1.5rem; }
-        
-        /* Konsep Quote Statistik */
-        .stat-quote { background: rgba(255,255,255,0.02); border-left: 4px solid var(--accent); padding: 1rem 1.5rem; border-radius: 0 8px 8px 0; max-width: 600px; margin: 2rem auto 0 auto; text-align: left; }
-        .stat-quote p { font-style: italic; color: var(--text-muted); font-size: 0.95rem; }
-        .stat-quote span { display: block; margin-top: 0.5rem; color: var(--text-main); font-weight: 600; font-size: 0.85rem; }
+:root {
+    --bg-main: #060b18;
+    --bg-card: rgba(15, 23, 42, 0.45); /* Efek Kaca Semi Transparan */
+    --border-glow: rgba(56, 189, 248, 0.15);
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --accent: #38bdf8; /* Cyber Blue */
+    --accent-purple: #818cf8; /* Math Purple */
+    --accent-green: #34d399;
+}
 
-        /* Gaya Data List (About / Profile) */
-        h2 { font-size: 1.8rem; font-weight: 700; margin-bottom: 1.5rem; color: var(--text-main); display: flex; align-items: center; gap: 0.7rem; }
-        h2 i { color: var(--accent); }
-        .info-list { list-style: none; max-width: 450px; margin: 2rem auto; }
-        .info-list li { margin: 1rem 0; padding-bottom: 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: left; font-size: 1.05rem; display: flex; align-items: center; }
-        .info-list i { color: var(--accent); width: 35px; font-size: 1.1rem; }
-        .info-list strong { color: var(--text-muted); font-weight: 500; width: 140px; display: inline-block; }
-        
-        /* Grid Keahlian / Core Skills */
-        .skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-top: 1.5rem; }
-        .skill-box { background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); padding: 1.2rem; border-radius: 10px; text-align: center; transition: 0.3s; }
-        .skill-box:hover { transform: translateY(-3px); border-color: var(--accent); background: rgba(56, 189, 248, 0.02); }
-        .skill-box i { font-size: 1.8rem; color: var(--accent); margin-bottom: 0.7rem; }
-        .skill-box h4 { font-size: 1.05rem; margin-bottom: 0.3rem; }
-        .skill-box p { font-size: 0.85rem; color: var(--text-muted); font-family: 'JetBrains Mono', monospace; }
+* { 
+    box-sizing: border-box; 
+    margin: 0; 
+    padding: 0; 
+    font-family: 'Plus Jakarta Sans', sans-serif; 
+}
 
-        /* Galeri Grid Modern (Portfolio) */
-        .gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
-        .gallery-item { background: rgba(255,255,255,0.01); border: 1px solid rgba(255,255,255,0.05); border-radius: 12px; overflow: hidden; transition: 0.3s; text-align: left; }
-        .gallery-item:hover { transform: translateY(-5px); border-color: var(--accent); box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
-        .gallery-item img { width: 100%; height: 200px; object-fit: cover; display: block; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .gallery-desc { padding: 1.5rem; }
-        .gallery-desc h3 { font-size: 1.2rem; margin-bottom: 0.5rem; color: var(--text-main); font-weight: 600; }
-        .gallery-desc p { color: var(--text-muted); font-size: 0.9rem; }
-        
-        /* Sosial Media Footer */
-        .social-links { display: flex; justify-content: center; gap: 1.5rem; margin-top: 2.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.05); }
-        .social-links a { color: var(--text-muted); font-size: 2rem; transition: 0.3s; text-decoration: none; }
-        .social-links a:hover { color: var(--accent); transform: translateY(-4px); }
-        
-        @keyframes slideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
+body { 
+    background-color: var(--bg-main); 
+    color: var(--text-main); 
+    line-height: 1.6; 
+    overflow-x: hidden;
+    /* Tambahan Pendaran Cahaya Abstrak di Latar Belakang */
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(129, 140, 248, 0.05) 0%, transparent 40%);
+}
+
+/* ==================== NAVIGASI MODERN (GLASSMORPHISM) ==================== */
+nav { 
+    background-color: rgba(6, 11, 24, 0.7); 
+    backdrop-filter: blur(16px); 
+    -webkit-backdrop-filter: blur(16px);
+    padding: 1rem; 
+    position: sticky; 
+    top: 0; 
+    z-index: 100; 
+    text-align: center; 
+    border-bottom: 1px solid rgba(255,255,255,0.06); 
+}
+
+nav button { 
+    background: none; 
+    border: none; 
+    color: var(--text-muted); 
+    font-size: 0.9rem; 
+    font-weight: 600; 
+    padding: 0.6rem 1.6rem; 
+    cursor: pointer; 
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+    border-radius: 100px; 
+    margin: 0 0.3rem; 
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+nav button:hover { 
+    color: var(--text-main); 
+    background-color: rgba(255, 255, 255, 0.03); 
+}
+
+nav button.active { 
+    color: var(--accent); 
+    background-color: rgba(56, 189, 248, 0.08); 
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.05);
+}
+
+/* ==================== KONTAINER UTAMA (LAYOUT BARU) ==================== */
+.container { 
+    max-width: 1050px; 
+    margin: 4rem auto; 
+    padding: 0 1.5rem; 
+}
+
+.page { 
+    display: none; 
+    background: var(--bg-card); 
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 3.5rem; 
+    border-radius: 24px; 
+    border: 1px solid rgba(255,255,255,0.05); 
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.4); 
+}
+
+.page.active { 
+    display: block; 
+    animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1); 
+}
+
+/* ==================== HERO SECTION (HOME) ==================== */
+.hero { 
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    gap: 3rem;
+    align-items: center;
+    text-align: left; 
+    padding: 1rem 0;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.profile-img-container { 
+    position: relative; 
+    width: 240px; 
+    height: 300px; 
+    margin: 0 auto; 
+}
+
+.profile-img { 
+    width: 100%; 
+    height: 100%; 
+    border-radius: 20px; 
+    object-fit: cover; 
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 6px; 
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(129, 140, 248, 0.2)); 
+}
+
+.stats-overlay { 
+    position: absolute; 
+    bottom: -10px; 
+    left: 50%; 
+    transform: translateX(-50%);
+    background: #0f172a; 
+    color: #fff; 
+    padding: 8px 16px; 
+    border-radius: 10px; 
+    font-size: 0.8rem; 
+    font-weight: 600; 
+    font-family: 'JetBrains Mono', monospace; 
+    border: 1px solid var(--accent);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.5); 
+    white-space: nowrap;
+}
+
+.hero h1 { 
+    font-size: 3rem; 
+    line-height: 1.1;
+    margin-bottom: 0.8rem; 
+    font-weight: 800; 
+    letter-spacing: -0.03em; 
+    background: linear-gradient(135deg, #ffffff 40%, #94a3b8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.tagline { 
+    font-family: 'JetBrains Mono', monospace; 
+    color: var(--accent); 
+    font-size: 1.05rem; 
+    font-weight: 600;
+    margin-bottom: 1.5rem; 
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* ==================== STATISTICAL QUOTE ==================== */
+.stat-quote { 
+    background: rgba(56, 189, 248, 0.03); 
+    border-left: 3px solid var(--accent); 
+    padding: 1.2rem 1.5rem; 
+    border-radius: 0 16px 16px 0; 
+    max-width: 100%; 
+    margin-top: 2rem;
+    border-top: 1px solid rgba(56, 189, 248, 0.05);
+    border-bottom: 1px solid rgba(56, 189, 248, 0.05);
+}
+
+.stat-quote p { 
+    font-style: italic; 
+    color: var(--text-muted); 
+    font-size: 0.95rem; 
+}
+
+.stat-quote span { 
+    display: block; 
+    margin-top: 0.6rem; 
+    color: var(--accent-purple); 
+    font-weight: 600; 
+    font-size: 0.85rem; 
+    font-family: 'JetBrains Mono', monospace;
+}
+
+/* ==================== PROFILE / ABOUT LIST ==================== */
+h2 { 
+    font-size: 2rem; 
+    font-weight: 800; 
+    margin-bottom: 2rem; 
+    letter-spacing: -0.02em;
+    display: flex; 
+    align-items: center; 
+    gap: 0.8rem; 
+}
+
+h2 i { 
+    color: var(--accent); 
+    font-size: 1.6rem;
+}
+
+.info-list { 
+    list-style: none; 
+    max-width: 100%; 
+    margin: 1.5rem 0; 
+    background: rgba(255,255,255,0.02);
+    padding: 1.5rem 2rem;
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.04);
+}
+
+.info-list li { 
+    margin: 0;
+    padding: 1rem 0; 
+    border-bottom: 1px solid rgba(255,255,255,0.04); 
+    font-size: 1rem; 
+    display: flex; 
+    align-items: center; 
+}
+
+.info-list li:last-child {
+    border-bottom: none;
+}
+
+.info-list i { 
+    color: var(--accent); 
+    width: 35px; 
+    font-size: 1.1rem; 
+}
+
+.info-list strong { 
+    color: var(--text-muted); 
+    font-weight: 600; 
+    width: 160px; 
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    display: inline-block; 
+}
+
+/* ==================== CORE SKILLS BOXES ==================== */
+.skills-grid { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+    gap: 1.2rem; 
+    margin-top: 2rem; 
+}
+
+.skill-box { 
+    background: rgba(255,255,255,0.02); 
+    border: 1px solid rgba(255,255,255,0.05); 
+    padding: 1.5rem; 
+    border-radius: 16px; 
+    text-align: left; 
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.skill-box:hover { 
+    transform: translateY(-5px); 
+    border-color: var(--accent); 
+    background: rgba(56, 189, 248, 0.03); 
+    box-shadow: 0 15px 30px -10px rgba(56, 189, 248, 0.15);
+}
+
+.skill-box i { 
+    font-size: 2rem; 
+    color: var(--accent); 
+    margin-bottom: 0.3rem; 
+}
+
+.skill-box h4 { 
+    font-size: 1.1rem; 
+    font-weight: 700;
+}
+
+.skill-box p { 
+    font-size: 0.85rem; 
+    color: var(--text-muted); 
+    font-family: 'JetBrains Mono', monospace; 
+}
+
+/* ==================== PORTFOLIO GALLERY ==================== */
+.gallery { 
+    display: grid; 
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    gap: 2rem; 
+    margin-top: 2rem; 
+}
+
+.gallery-item { 
+    background: rgba(15, 23, 42, 0.6); 
+    border: 1px solid rgba(255,255,255,0.05); 
+    border-radius: 20px; 
+    overflow: hidden; 
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+}
+
+.gallery-item:hover { 
+    transform: translateY(-8px); 
+    border-color: var(--accent-purple); 
+    box-shadow: 0 20px 40px -15px rgba(129, 140, 248, 0.25); 
+}
+
+.gallery-item img { 
+    width: 100%; 
+    height: 210px; 
+    object-fit: cover; 
+    display: block; 
+    border-bottom: 1px solid rgba(255,255,255,0.05); 
+    transition: transform 0.5s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.03);
+}
+
+.gallery-desc { 
+    padding: 1.7rem; 
+}
+
+.gallery-desc h3 { 
+    font-size: 1.3rem; 
+    margin-bottom: 0.6rem; 
+    color: var(--text-main); 
+    font-weight: 700; 
+}
+
+.gallery-desc p { 
+    color: var(--text-muted); 
+    font-size: 0.95rem; 
+    line-height: 1.5;
+}
+
+/* ==================== FOOTER / SOSIAL MEDIA ==================== */
+.social-links { 
+    display: flex; 
+    justify-content: center; 
+    gap: 1.2rem; 
+    margin-top: 3.5rem; 
+    padding-top: 2rem; 
+    border-top: 1px solid rgba(255,255,255,0.05); 
+}
+
+.social-links a { 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 48px;
+    height: 48px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--text-muted); 
+    border-radius: 14px; 
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+    font-size: 1.4rem;
+    text-decoration: none; 
+}
+
+.social-links a:hover { 
+    color: #fff; 
+    background: var(--accent);
+    border-color: var(--accent);
+    transform: translateY(-5px); 
+    box-shadow: 0 10px 20px rgba(56, 189, 248, 0.25);
+}
+
+@keyframes slideUp { 
+    from { opacity: 0; transform: translateY(20px); filter: blur(5px); } 
+    to { opacity: 1; transform: translateY(0); filter: blur(0); } 
+}
+
+@media (max-width: 768px) {
+    .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 2rem;
+    }
+    .hero-content {
+        order: 2;
+    }
+    .profile-img-container {
+        order: 1;
+        width: 200px;
+        height: 250px;
+    }
+    .hero h1 { font-size: 2.2rem; }
+    .page { padding: 2rem 1.2rem; }
+    .info-list { padding: 1rem; }
+    .info-list li { flex-direction: column; align-items: flex-start; gap: 0.2rem; }
+    .info-list strong { width: 100%; }
+       }
     </style>
 </head>
 <body>
