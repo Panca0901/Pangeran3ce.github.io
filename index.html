@@ -13,379 +13,408 @@
 
     <style>
         :root {
-    --bg-main: #060b18; /* Diubah ke hitam dongker premium ala platform data */
-    --bg-card: rgba(15, 23, 42, 0.45); /* Efek kaca semi-transparan (Glassmorphism) */
-    --text-main: #f8fafc;
-    --text-muted: #94a3b8;
-    --accent: #38bdf8; /* Cyber Blue */
-    --accent-purple: #818cf8; /* Math Purple */
-    --accent-green: #34d399;
-}
-
-* { 
-    box-sizing: border-box; 
-    margin: 0; 
-    padding: 0; 
-    font-family: 'Plus Jakarta Sans', sans-serif; 
-}
-
-body { 
-    background-color: var(--bg-main); 
-    color: var(--text-main); 
-    line-height: 1.6; 
-    overflow-x: hidden;
-    /* Tambahan pendaran cahaya abstrak halus di latar belakang */
-    background-image: 
-        radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.05) 0%, transparent 40%),
-        radial-gradient(circle at 90% 80%, rgba(129, 140, 248, 0.05) 0%, transparent 40%);
-}
-
-/* Navigasi Modern (Glassmorphism) */
-nav { 
-    background-color: rgba(6, 11, 24, 0.7); 
-    backdrop-filter: blur(16px); 
-    -webkit-backdrop-filter: blur(16px);
-    padding: 1.2rem; 
-    position: sticky; 
-    top: 0; 
-    z-index: 100; 
-    text-align: center; 
-    border-bottom: 1px solid rgba(255,255,255,0.06); 
-}
-
-nav button { 
-    background: none; 
-    border: none; 
-    color: var(--text-muted); 
-    font-size: 0.95rem; 
-    font-weight: 600; 
-    padding: 0.6rem 1.5rem; 
-    cursor: pointer; 
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
-    border-radius: 20px; 
-    margin: 0 0.2rem; 
-}
-
-nav button:hover { 
-    color: var(--text-main); 
-    background-color: rgba(255, 255, 255, 0.03); 
-}
-
-nav button.active { 
-    color: var(--accent); 
-    background-color: rgba(56, 189, 248, 0.08); 
-    border: 1px solid rgba(56, 189, 248, 0.15);
-    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.05);
-}
-
-/* Kontainer Utama & Efek Kaca pada Halaman */
-.container { 
-    max-width: 1000px; 
-    margin: 3rem auto; 
-    padding: 0 1.5rem; 
-}
-
-.page { 
-    display: none; 
-    background: var(--bg-card); 
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    padding: 3rem; 
-    border-radius: 24px; 
-    border: 1px solid rgba(255,255,255,0.05); 
-    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.4); 
-}
-
-.page.active { 
-    display: block; 
-    animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1); 
-}
-
-/* Halaman Home - Desain Eksplorasi Sains Data */
-.hero { 
-    text-align: center; 
-    padding: 1.5rem 0; 
-}
-
-.profile-img-container { 
-    position: relative; 
-    width: 190px; 
-    height: 190px; 
-    margin: 0 auto 2.5rem auto; 
-}
-
-.profile-img { 
-    width: 100%; 
-    height: 100%; 
-    border-radius: 50%; 
-    object-fit: cover; 
-    border: 1px solid rgba(56, 189, 248, 0.3); 
-    padding: 6px; 
-    background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(129, 140, 248, 0.2)); 
-    box-shadow: 0 10px 30px rgba(56, 189, 248, 0.15);
-}
-
-.stats-overlay { 
-    position: absolute; 
-    bottom: -5px; 
-    right: -5px; 
-    background: #0f172a; 
-    color: var(--accent-green); 
-    padding: 6px 12px; 
-    border-radius: 10px; 
-    font-size: 0.75rem; 
-    font-weight: 700; 
-    font-family: 'JetBrains Mono', monospace; 
-    border: 1px solid var(--accent-green);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.4); 
-}
-
-.hero h1 { 
-    font-size: 3rem; 
-    margin-bottom: 0.6rem; 
-    font-weight: 800; 
-    letter-spacing: -0.03em; 
-    background: linear-gradient(135deg, #ffffff 40%, #94a3b8 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-.tagline { 
-    font-family: 'JetBrains Mono', monospace; 
-    color: var(--accent); 
-    font-size: 1.05rem; 
-    font-weight: 600;
-    margin-bottom: 2rem; 
-}
-
-/* Konsep Quote Statistik Modern */
-.stat-quote { 
-    background: rgba(56, 189, 248, 0.02); 
-    border-left: 3px solid var(--accent); 
-    padding: 1.2rem 1.5rem; 
-    border-radius: 0 12px 12px 0; 
-    max-width: 600px; 
-    margin: 2.5rem auto 0 auto; 
-    text-align: left; 
-    border-top: 1px solid rgba(255,255,255,0.02);
-    border-bottom: 1px solid rgba(255,255,255,0.02);
-}
-
-.stat-quote p { 
-    font-style: italic; 
-    color: var(--text-muted); 
-    font-size: 0.95rem; 
-}
-
-.stat-quote span { 
-    display: block; 
-    margin-top: 0.5rem; 
-    color: var(--accent-purple); 
-    font-weight: 600; 
-    font-size: 0.85rem; 
-    font-family: 'JetBrains Mono', monospace;
-}
-
-/* Gaya Judul Utama (Headings) */
-h2 { 
-    font-size: 1.8rem; 
-    font-weight: 800; 
-    margin-top: 3.5rem;
-    margin-bottom: 1.8rem; 
-    color: var(--text-main); 
-    letter-spacing: -0.02em;
-    display: flex; 
-    align-items: center; 
-    gap: 0.7rem; 
-}
-
-h2::before {
-    content: '//';
-    color: var(--accent);
-    font-family: 'JetBrains Mono', monospace;
-    font-size: 1.5rem;
-    font-weight: 600;
-}
-
-/* Gaya Data List (About / Profile) */
-.info-list { 
-    list-style: none; 
-    max-width: 550px; 
-    margin: 2rem auto; 
-    background: rgba(255,255,255,0.02);
-    padding: 1.5rem 2rem;
-    border-radius: 16px;
-    border: 1px solid rgba(255,255,255,0.04);
-}
-
-.info-list li { 
-    margin: 0;
-    padding: 1rem 0; 
-    border-bottom: 1px solid rgba(255,255,255,0.04); 
-    text-align: left; 
-    font-size: 1rem; 
-    display: flex; 
-    align-items: center; 
-}
-
-.info-list li:last-child {
-    border-bottom: none;
-}
-
-.info-list strong { 
-    color: var(--text-muted); 
-    font-weight: 600; 
-    width: 160px; 
-    font-size: 0.85rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    display: inline-block; 
-}
-
-/* Grid Keahlian / Core Skills */
-.skills-grid { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); 
-    gap: 1.2rem; 
-    margin-top: 1.5rem; 
-}
-
-.skill-box { 
-    background: rgba(255,255,255,0.02); 
-    border: 1px solid rgba(255,255,255,0.05); 
-    padding: 1.5rem; 
-    border-radius: 16px; 
-    text-align: center; 
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
-}
-
-.skill-box:hover { 
-    transform: translateY(-5px); 
-    border-color: var(--accent); 
-    background: rgba(56, 189, 248, 0.03); 
-    box-shadow: 0 15px 30px -10px rgba(56, 189, 248, 0.15);
-}
-
-.skill-box i { 
-    font-size: 2rem; 
-    color: var(--accent); 
-    margin-bottom: 0.8rem; 
-}
-
-.skill-box h4 { 
-    font-size: 1.1rem; 
-    font-weight: 700;
-    margin-bottom: 0.4rem; 
-}
-
-.skill-box p { 
-    font-size: 0.85rem; 
-    color: var(--text-muted); 
-    font-family: 'JetBrains Mono', monospace; 
-}
-
-/* Galeri Grid Modern (Portfolio) */
-.gallery { 
-    display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); 
-    gap: 2rem; 
-    margin-top: 1.5rem; 
-}
-
-.gallery-item { 
-    background: rgba(15, 23, 42, 0.6); 
-    border: 1px solid rgba(255,255,255,0.05); 
-    border-radius: 20px; 
-    overflow: hidden; 
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
-    text-align: left; 
-}
-
-.gallery-item:hover { 
-    transform: translateY(-6px); 
-    border-color: var(--accent-purple); 
-    box-shadow: 0 20px 40px -15px rgba(129, 140, 248, 0.2); 
-}
-
-.gallery-item img { 
-    width: 100%; 
-    height: 210px; 
-    object-fit: cover; 
-    display: block; 
-    border-bottom: 1px solid rgba(255,255,255,0.05); 
-}
-
-.gallery-desc { 
-    padding: 1.6rem; 
-}
-
-.gallery-desc h3 { 
-    font-size: 1.25rem; 
-    margin-bottom: 0.6rem; 
-    color: var(--text-main); 
-    font-weight: 700; 
-}
-
-.gallery-desc p { 
-    color: var(--text-muted); 
-    font-size: 0.95rem; 
-    line-height: 1.5;
-}
-
-/* Sosial Media Footer */
-.social-links { 
-    display: flex; 
-    justify-content: center; 
-    gap: 1.2rem; 
-    margin-top: 3.5rem; 
-    padding-top: 2rem; 
-    border-top: 1px solid rgba(255,255,255,0.05); 
-}
-
-.social-links a { 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 46px;
-    height: 46px;
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(255, 255, 255, 0.05);
-    color: var(--text-muted); 
-    font-size: 1.3rem; 
-    border-radius: 12px;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
-    text-decoration: none; 
-}
-
-.social-links a:hover { 
-    color: #fff; 
-    background: var(--accent);
-    border-color: var(--accent);
-    transform: translateY(-5px); 
-    box-shadow: 0 10px 20px rgba(56, 189, 248, 0.25);
-}
-
-/* Animasi Fade-In saat Halaman Aktif */
-@keyframes slideUp { 
-    from { opacity: 0; transform: translateY(15px); filter: blur(4px); } 
-    to { opacity: 1; transform: translateY(0); filter: blur(0); } 
-}
-
-/* Optimasi Tampilan Mobile */
-@media (max-width: 768px) {
-    .page { padding: 2rem 1.2rem; }
-    .hero h1 { font-size: 2.3rem; }
-    .info-list { padding: 1.2rem 1rem; }
-    .info-list li { flex-direction: column; align-items: flex-start; gap: 0.2rem; }
-    .info-list strong { width: 100%; }
+            --bg-main: #060b18; /* Hitam dongker premium khas platform data */
+            --bg-card: rgba(15, 23, 42, 0.45); /* Efek Glassmorphism semi-transparan */
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8; /* Cyber Blue */
+            --accent-purple: #818cf8; /* Math Purple */
+            --accent-green: #34d399;
         }
 
+        * { 
+            box-sizing: border-box; 
+            margin: 0; 
+            padding: 0; 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+        }
 
+        body { 
+            background-color: var(--bg-main); 
+            color: var(--text-main); 
+            line-height: 1.6; 
+            overflow-x: hidden;
+            /* Pendaran cahaya abstrak halus di latar belakang */
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.05) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(129, 140, 248, 0.05) 0%, transparent 40%);
+        }
+
+        /* ==================== NAVIGASI MENU (GLASSMORPHISM) ==================== */
+        nav { 
+            background-color: rgba(6, 11, 24, 0.7); 
+            backdrop-filter: blur(16px); 
+            -webkit-backdrop-filter: blur(16px);
+            padding: 1.2rem; 
+            position: sticky; 
+            top: 0; 
+            z-index: 100; 
+            text-align: center; 
+            border-bottom: 1px solid rgba(255,255,255,0.06); 
+        }
+
+        nav button { 
+            background: none; 
+            border: none; 
+            color: var(--text-muted); 
+            font-size: 0.95rem; 
+            font-weight: 600; 
+            padding: 0.6rem 1.5rem; 
+            cursor: pointer; 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+            border-radius: 20px; 
+            margin: 0 0.2rem; 
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        nav button:hover { 
+            color: var(--text-main); 
+            background-color: rgba(255, 255, 255, 0.03); 
+        }
+
+        nav button.active { 
+            color: var(--accent); 
+            background-color: rgba(56, 189, 248, 0.08); 
+            border: 1px solid rgba(56, 189, 248, 0.15);
+            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.05);
+        }
+
+        /* ==================== KONTEN CARD UTAMA ==================== */
+        .container { 
+            max-width: 1000px; 
+            margin: 3rem auto; 
+            padding: 0 1.5rem; 
+        }
+
+        .page { 
+            display: none; 
+            background: var(--bg-card); 
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 3rem; 
+            border-radius: 24px; 
+            border: 1px solid rgba(255,255,255,0.05); 
+            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.4); 
+        }
+
+        .page.active { 
+            display: block; 
+            animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1); 
+        }
+
+        /* ==================== HERO SECTION (HOME) ==================== */
+        .hero { 
+            text-align: center; 
+            padding: 1.5rem 0; 
+        }
+
+        .profile-img-container { 
+            position: relative; 
+            width: 190px; 
+            height: 190px; 
+            margin: 0 auto 2.5rem auto; 
+        }
+
+        .profile-img { 
+            width: 100%; 
+            height: 100%; 
+            border-radius: 50%; 
+            object-fit: cover; 
+            border: 1px solid rgba(56, 189, 248, 0.3); 
+            padding: 6px; 
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(129, 140, 248, 0.2)); 
+            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.15);
+        }
+
+        .stats-overlay { 
+            position: absolute; 
+            bottom: -5px; 
+            right: -5px; 
+            background: #0f172a; 
+            color: var(--accent-green); 
+            padding: 6px 12px; 
+            border-radius: 10px; 
+            font-size: 0.75rem; 
+            font-weight: 700; 
+            font-family: 'JetBrains Mono', monospace; 
+            border: 1px solid var(--accent-green);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.4); 
+        }
+
+        .hero h1 { 
+            font-size: 3rem; 
+            margin-bottom: 0.6rem; 
+            font-weight: 800; 
+            letter-spacing: -0.03em; 
+            background: linear-gradient(135deg, #ffffff 40%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tagline { 
+            font-family: 'JetBrains Mono', monospace; 
+            color: var(--accent); 
+            font-size: 1.05rem; 
+            font-weight: 600;
+            margin-bottom: 2rem; 
+        }
+
+        /* Kutipan Statistik */
+        .stat-quote { 
+            background: rgba(56, 189, 248, 0.02); 
+            border-left: 3px solid var(--accent); 
+            padding: 1.2rem 1.5rem; 
+            border-radius: 0 12px 12px 0; 
+            max-width: 600px; 
+            margin: 2.5rem auto 0 auto; 
+            text-align: left; 
+            border-top: 1px solid rgba(255,255,255,0.02);
+            border-bottom: 1px solid rgba(255,255,255,0.02);
+        }
+
+        .stat-quote p { 
+            font-style: italic; 
+            color: var(--text-muted); 
+            font-size: 0.95rem; 
+        }
+
+        .stat-quote span { 
+            display: block; 
+            margin-top: 0.5rem; 
+            color: var(--accent-purple); 
+            font-weight: 600; 
+            font-size: 0.85rem; 
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        /* ==================== HEADINGS / JUDUL HALAMAN ==================== */
+        h2 { 
+            font-size: 1.8rem; 
+            font-weight: 800; 
+            margin-bottom: 1.8rem; 
+            color: var(--text-main); 
+            letter-spacing: -0.02em;
+            display: flex; 
+            align-items: center; 
+            gap: 0.7rem; 
+        }
+
+        h2 i {
+            color: var(--accent);
+        }
+
+        /* ==================== HALAMAN ABOUT & SKILLS GRID ==================== */
+        .skills-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); 
+            gap: 1.2rem; 
+            margin-top: 1.5rem; 
+        }
+
+        .skill-box { 
+            background: rgba(255, 255, 255, 0.02); 
+            border: 1px solid rgba(255,255,255,0.05); 
+            padding: 1.8rem 1.5rem; 
+            border-radius: 16px; 
+            text-align: center; 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+        }
+
+        .skill-box:hover { 
+            transform: translateY(-5px); 
+            border-color: var(--accent); 
+            background: rgba(56, 189, 248, 0.03); 
+            box-shadow: 0 15px 30px -10px rgba(56, 189, 248, 0.15);
+        }
+
+        .skill-box i { 
+            font-size: 2.2rem; 
+            color: var(--accent); 
+            margin-bottom: 0.8rem; 
+        }
+
+        .skill-box h4 { 
+            font-size: 1.1rem; 
+            font-weight: 700;
+            margin-bottom: 0.4rem; 
+            color: var(--text-main);
+        }
+
+        .skill-box p { 
+            font-size: 0.85rem; 
+            color: var(--text-muted); 
+            font-family: 'JetBrains Mono', monospace; 
+        }
+
+        /* ==================== HALAMAN PORTFOLIO (GALERI) ==================== */
+        .gallery { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); 
+            gap: 2rem; 
+            margin-top: 1.5rem; 
+        }
+
+        .gallery-item { 
+            background: rgba(15, 23, 42, 0.6); 
+            border: 1px solid rgba(255,255,255,0.05); 
+            border-radius: 20px; 
+            overflow: hidden; 
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+            text-align: left; 
+        }
+
+        .gallery-item:hover { 
+            transform: translateY(-6px); 
+            border-color: var(--accent-purple); 
+            box-shadow: 0 20px 40px -15px rgba(129, 140, 248, 0.2); 
+        }
+
+        .gallery-item img { 
+            width: 100%; 
+            height: 210px; 
+            object-fit: cover; 
+            display: block; 
+            border-bottom: 1px solid rgba(255,255,255,0.05); 
+        }
+
+        .gallery-desc { 
+            padding: 1.6rem; 
+        }
+
+        .gallery-desc h3 { 
+            font-size: 1.25rem; 
+            margin-bottom: 0.6rem; 
+            color: var(--text-main); 
+            font-weight: 700; 
+        }
+
+        .gallery-desc p { 
+            color: var(--text-muted); 
+            font-size: 0.95rem; 
+            line-height: 1.5;
+        }
+
+        /* ==================== HALAMAN PROFILE (CONNECT WITH ME) ==================== */
+        .profile-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            margin-top: 2rem;
+        }
+        
+        .profile-info {
+            flex: 1.2;
+        }
+
+        .info-list { 
+            list-style: none !important; 
+            padding: 1.5rem !important;
+            margin: 0 0 25px 0 !important;
+            background: rgba(255,255,255,0.02) !important;
+            border-radius: 16px !important;
+            border: 1px solid rgba(255,255,255,0.04) !important;
+        }
+
+        .info-list li { 
+            display: grid !important;
+            grid-template-columns: 35px 140px auto !important;
+            align-items: center !important;
+            padding: 0.8rem 0 !important;
+            border-bottom: 1px solid rgba(255,255,255,0.04) !important;
+            font-size: 1rem !important;
+            color: var(--text-main) !important;
+        }
+
+        .info-list li:last-child {
+            border-bottom: none !important;
+        }
+
+        .info-list li i {
+            color: var(--accent);
+            font-size: 1.1rem;
+        }
+
+        .info-list strong { 
+            color: var(--text-muted) !important; 
+            font-weight: 600 !important; 
+            font-size: 0.85rem !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.05em !important;
+        }
+
+        /* Ikon Sosial Media */
+        .social-links { 
+            display: flex !important; 
+            justify-content: flex-start !important; 
+            gap: 1.2rem !important; 
+            margin-top: 2rem !important; 
+            padding: 0 !important;
+            border: none !important;
+        }
+
+        .social-links a { 
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+            width: 48px !important;
+            height: 48px !important;
+            background: rgba(255, 255, 255, 0.02) !important;
+            border: 1px solid rgba(255, 255, 255, 0.05) !important;
+            color: var(--text-muted) !important; 
+            font-size: 1.4rem !important; 
+            border-radius: 14px !important;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important; 
+            text-decoration: none !important; 
+        }
+
+        .social-links a:hover { 
+            color: #fff !important; 
+            background: var(--accent) !important;
+            border-color: var(--accent) !important;
+            transform: translateY(-5px) !important; 
+            box-shadow: 0 10px 20px rgba(56, 189, 248, 0.25) !important;
+        }
+
+        .profile-photo {
+            flex: 0.8;
+            display: flex;
+            justify-content: center;
+        }
+        
+        .profile-photo img {
+            width: 100%;
+            max-width: 280px;
+            height: auto;
+            object-fit: cover;
+            border-radius: 24px;
+            border: 1px solid rgba(255,255,255,0.05);
+            padding: 6px;
+            background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(129, 140, 248, 0.1));
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+        }
+
+        /* Animasi Transisi Halaman */
+        @keyframes slideUp { 
+            from { opacity: 0; transform: translateY(15px); filter: blur(4px); } 
+            to { opacity: 1; transform: translateY(0); filter: blur(0); } 
+        }
+
+        /* Optimasi Tampilan Mobile */
+        @media (max-width: 768px) {
+            .page { padding: 2rem 1.2rem; }
+            .hero h1 { font-size: 2.3rem; }
+            .profile-container { flex-direction: column-reverse; gap: 30px; }
+            .info-list li { grid-template-columns: 30px 120px auto !important; font-size: 0.9rem !important; }
+            .social-links { justify-content: center !important; }
+            .profile-photo img { max-width: 220px; }
+        }
     </style>
 </head>
 <body>
 
-    <!-- Navigasi Menu Dashboard -->
     <nav>
         <button id="btn-home" class="active" onclick="bukaHalaman('home')"><i class="fa-solid fa-chart-pie"></i> Home</button>
         <button id="btn-about" onclick="bukaHalaman('about')"><i class="fa-solid fa-terminal"></i> About</button>
@@ -394,7 +423,6 @@ h2::before {
     </nav>
 
     <div class="container">
-        <!-- HALAMAN HOME -->
         <section id="page-home" class="page active">
             <div class="hero">
                 <div class="profile-img-container">
@@ -413,7 +441,6 @@ h2::before {
             </div>
         </section>
 
-        <!-- HALAMAN ABOUT -->
         <section id="page-about" class="page">
             <h2><i class="fa-solid fa-chart-line"></i> Metode & Kompetensi</h2>
             <p style="color: var(--text-muted); margin-bottom: 2rem;">Saya mempelajari pola, mengekstrak informasi, dan mereduksi ketidakpastian dari kompleksitas sekumpulan data murni guna mendukung pengambilan keputusan berbasis bukti empiris.</p>
@@ -442,7 +469,6 @@ h2::before {
             </div>
         </section>
 
-        <!-- HALAMAN PORTFOLIO -->
         <section id="page-portfolio" class="page">
             <h2><i class="fa-solid fa-folder-open"></i> Eksplorasi & Kegiatan</h2>
             <p style="color: var(--text-muted); margin-bottom: 2rem;">Dokumentasi riwayat riset lapangan, survei, kepanitiaan, dan aktivitas akademik yang telah saya selesaikan:</p>
@@ -450,8 +476,7 @@ h2::before {
             <div class="gallery">
                 <div class="gallery-item">
                     <img src="kegiatan1.jpeg" alt="Foto Kegiatan 1"> 
-                    <div class="gallery-desc"><h3>Latihan Dasar Kepemimpinan OSIS/MPK</h3><p>Pembentukan karakter dan kedisiplinan pengurus OSIS melalui Latihan Dasar Kepemimpinan yang diselenggarakan di Rindam XVII/Cenderawasih. (16–18 Januari 2025)
-</p></div>
+                    <div class="gallery-desc"><h3>Latihan Dasar Kepemimpinan OSIS/MPK</h3><p>Pembentukan karakter dan kedisiplinan pengurus OSIS melalui Latihan Dasar Kepemimpinan yang diselenggarakan di Rindam XVII/Cenderawasih. (16–18 Januari 2025)</p></div>
                 </div>
                 <div class="gallery-item">
                     <img src="kegiatan2.jpeg" alt="Foto Kegiatan 2">
@@ -477,101 +502,31 @@ h2::before {
         </section>
 
         <section id="page-profile" class="page">
-    <h2><i class="fa-solid fa-id-card"></i> Connect With Me</h2>
-    
-    <!-- Bungkus baru untuk membagi kolom kiri & kanan -->
-    <div class="profile-container">
-        
-        <!-- Kolom Kiri: Informasi Kontak -->
-        <div class="profile-info">
-            <ul class="info-list">
-                <li><i class="fa-solid fa-signature"></i> <strong>Nama Lengkap:</strong> Pangeran Candraning Edhi</li>
-                <li><i class="fa-solid fa-envelope-open-text"></i> <strong>Email:</strong> pangeran3ce@gmail.com</li>
-                <li><i class="fa-solid fa-mobile-screen-button"></i> <strong>No. Telepon:</strong> +62 813-6370-2015</li>
-                <li><i class="fa-solid fa-network-wired"></i> <strong>Bidang Peminatan:</strong> Data Science & Quantitative Analyst</li>
-            </ul>
+            <h2><i class="fa-solid fa-id-card"></i> Connect With Me</h2>
+            
+            <div class="profile-container">
+                <div class="profile-info">
+                    <ul class="info-list">
+                        <li><i class="fa-solid fa-signature"></i> <strong>Nama Lengkap:</strong> Pangeran Candraning Edhi</li>
+                        <li><i class="fa-solid fa-envelope-open-text"></i> <strong>Email:</strong> pangeran3ce@gmail.com</li>
+                        <li><i class="fa-solid fa-mobile-screen-button"></i> <strong>No. Telepon:</strong> +62 813-6370-2015</li>
+                        <li><i class="fa-solid fa-network-wired"></i> <strong>Bidang Peminatan:</strong> Data Science & Quantitative Analyst</li>
+                    </ul>
 
-            <div class="social-links">
-                <a href="https://www.instagram.com/pangeran_ce3?dlrf=MTNyYWdpd29wZHBqeA==" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://www.linkedin.com/in/pangeran-candraning-edhi-aa96683bb" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-                <a href="https://github.com/Panca0901" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                    <div class="social-links">
+                        <a href="https://www.instagram.com/pangeran_ce3?dlrf=MTNyYWgit29wZHBqeA==" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/pangeran-candraning-edhi-aa96683bb" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="https://github.com/Panca0901" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
+                    </div>
+                </div>
+
+                <div class="profile-photo">
+                    <img src="no bc.png" alt="Foto Pangeran">
+                </div>
             </div>
-        </div>
-
-        <!-- Kolom Kanan: Foto Profil Tanpa Background -->
-        <div class="profile-photo">
-            <img src="no bc.png" alt="Foto Pangeran">
-        </div>
-
+        </section>
     </div>
-</section>
-<style>
-                        .profile-container {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            gap: 40px;
-            margin-top: 30px;
-        }
-        
-        .profile-info {
-            flex: 1.2;
-        }
 
-        .info-list {
-            list-style: none !important;
-            padding: 0 !important;
-            margin: 0 0 25px 0 !important;
-        }
-
-        .info-list li {
-            display: grid;
-            grid-template-columns: 35px 140px auto;
-            align-items: center;
-            margin-bottom: 20px;
-            font-size: 16px;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 15px;
-            padding-left: 0;
-            margin-top: 25px;
-        }
-        
-        .profile-photo {
-            flex: 0.8;
-            display: flex;
-            justify-content: center;
-            margin: 0 !important;
-            padding: 0 !important;
-        }
-        
-        .profile-photo img {
-            width: 100%;
-            max-width: 320px;
-            height: auto;
-            object-fit: cover;
-            display: block;
-            margin-top: -10px;
-        }
-        
-        @media (max-width: 768px) {
-            .profile-container {
-                flex-direction: column-reverse;
-                gap: 25px;
-            }
-            .info-list li {
-                grid-template-columns: 30px 120px auto;
-                font-size: 14px;
-            }
-            .social-links {
-                justify-content: center;
-            }
-        }
-
-
-    </style>
     <script>
         function bukaHalaman(fungsi) {
             const semuaHalaman = ['home', 'about', 'portfolio', 'profile'];
