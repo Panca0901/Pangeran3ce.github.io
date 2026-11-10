@@ -13,12 +13,12 @@
 
     <style>
         :root {
-            --bg-main: #060b18; /* Hitam dongker premium khas platform data */
-            --bg-card: rgba(15, 23, 42, 0.45); /* Efek Glassmorphism semi-transparan */
+            --bg-main: #060b18;
+            --bg-card: rgba(15, 23, 42, 0.45);
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --accent: #38bdf8; /* Cyber Blue */
-            --accent-purple: #818cf8; /* Math Purple */
+            --accent: #38bdf8;
+            --accent-purple: #818cf8;
             --accent-green: #34d399;
         }
 
@@ -34,13 +34,11 @@
             color: var(--text-main); 
             line-height: 1.6; 
             overflow-x: hidden;
-            /* Pendaran cahaya abstrak halus di latar belakang */
             background-image: 
                 radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.05) 0%, transparent 40%),
                 radial-gradient(circle at 90% 80%, rgba(129, 140, 248, 0.05) 0%, transparent 40%);
         }
 
-        /* ==================== NAVIGASI MENU (GLASSMORPHISM) ==================== */
         nav { 
             background-color: rgba(6, 11, 24, 0.7); 
             backdrop-filter: blur(16px); 
@@ -81,7 +79,6 @@
             box-shadow: 0 4px 15px rgba(56, 189, 248, 0.05);
         }
 
-        /* ==================== KONTEN CARD UTAMA ==================== */
         .container { 
             max-width: 1000px; 
             margin: 3rem auto; 
@@ -104,7 +101,6 @@
             animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1); 
         }
 
-        /* ==================== HERO SECTION (HOME) ==================== */
         .hero { 
             text-align: center; 
             padding: 1.5rem 0; 
@@ -161,7 +157,6 @@
             margin-bottom: 2rem; 
         }
 
-        /* Kutipan Statistik */
         .stat-quote { 
             background: rgba(56, 189, 248, 0.02); 
             border-left: 3px solid var(--accent); 
@@ -189,7 +184,6 @@
             font-family: 'JetBrains Mono', monospace;
         }
 
-        /* ==================== HEADINGS / JUDUL HALAMAN ==================== */
         h2 { 
             font-size: 1.8rem; 
             font-weight: 800; 
@@ -205,7 +199,6 @@
             color: var(--accent);
         }
 
-        /* ==================== HALAMAN ABOUT & SKILLS GRID ==================== */
         .skills-grid { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); 
@@ -248,7 +241,6 @@
             font-family: 'JetBrains Mono', monospace; 
         }
 
-        /* ==================== HALAMAN PORTFOLIO (GALERI) ==================== */
         .gallery { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); 
@@ -296,7 +288,6 @@
             line-height: 1.5;
         }
 
-        /* ==================== HALAMAN PROFILE (CONNECT WITH ME) ==================== */
         .profile-container {
             display: flex;
             align-items: center;
@@ -345,7 +336,6 @@
             letter-spacing: 0.05em !important;
         }
 
-        /* Ikon Sosial Media */
         .social-links { 
             display: flex !important; 
             justify-content: flex-start !important; 
@@ -396,13 +386,11 @@
             box-shadow: 0 15px 35px rgba(0,0,0,0.3);
         }
 
-        /* Animasi Transisi Halaman */
         @keyframes slideUp { 
             from { opacity: 0; transform: translateY(15px); filter: blur(4px); } 
             to { opacity: 1; transform: translateY(0); filter: blur(0); } 
         }
 
-        /* Optimasi Tampilan Mobile */
         @media (max-width: 768px) {
             .page { padding: 2rem 1.2rem; }
             .hero h1 { font-size: 2.3rem; }
