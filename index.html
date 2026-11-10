@@ -1,528 +1,1388 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pangeran | Statistics Portfolio</title>
-    
-    <!-- Memuat Google Fonts & Ikon Font Awesome -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Portofolio Pangeran Candraning Edhi, mahasiswa Statistika Universitas Cenderawasih di Jayapura, Papua."
+    />
+    <meta name="theme-color" content="#070c18" />
+    <title>Pangeran Candraning Edhi — Statistics Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        :root {
-            --bg-main: #060b18;
-            --bg-card: rgba(15, 23, 42, 0.45);
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent: #38bdf8;
-            --accent-purple: #818cf8;
-            --accent-green: #34d399;
+      :root {
+        color-scheme: dark;
+        --page: #070c18;
+        --panel: #0f172a;
+        --panel-raised: #131d38;
+        --text: #f8fafc;
+        --muted: #a5b4c8;
+        --cyan: #38bdf8;
+        --indigo: #a5b4fc;
+        --green: #34d399;
+        --line: rgba(148, 163, 184, 0.17);
+        --mono: "JetBrains Mono", monospace;
+        --sans: "Plus Jakarta Sans", sans-serif;
+      }
+
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+        scroll-padding-top: 100px;
+      }
+
+      body {
+        margin: 0;
+        overflow-x: hidden;
+        background-color: var(--page);
+        background-image:
+          radial-gradient(ellipse at 12% 8%, rgba(56, 189, 248, 0.11), transparent 36%),
+          radial-gradient(ellipse at 88% 26%, rgba(129, 140, 248, 0.08), transparent 34%),
+          linear-gradient(rgba(148, 163, 184, 0.025) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(148, 163, 184, 0.025) 1px, transparent 1px);
+        background-size: auto, auto, 64px 64px, 64px 64px;
+        color: var(--text);
+        font-family: var(--sans);
+        line-height: 1.65;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      button,
+      input {
+        font: inherit;
+      }
+
+      button:focus-visible,
+      a:focus-visible,
+      input:focus-visible {
+        outline: 2px solid var(--cyan);
+        outline-offset: 4px;
+      }
+
+      .shell {
+        width: min(1120px, calc(100% - 48px));
+        margin-inline: auto;
+      }
+
+      .topbar {
+        position: sticky;
+        z-index: 10;
+        top: 0;
+        border-bottom: 1px solid var(--line);
+        background: rgba(7, 12, 24, 0.86);
+        backdrop-filter: blur(18px);
+      }
+
+      .nav-inner {
+        display: flex;
+        min-height: 76px;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        color: var(--text);
+        font-size: 0.95rem;
+        font-weight: 800;
+        text-decoration: none;
+        white-space: nowrap;
+      }
+
+      .brand-mark {
+        display: grid;
+        width: 38px;
+        height: 38px;
+        place-items: center;
+        border: 1px solid rgba(56, 189, 248, 0.34);
+        border-radius: 12px;
+        background: rgba(56, 189, 248, 0.1);
+        color: var(--cyan);
+        font-family: var(--mono);
+        font-size: 1.15rem;
+      }
+
+      .nav-links {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .nav-link {
+        padding: 9px 13px;
+        border: 1px solid transparent;
+        border-radius: 999px;
+        color: var(--muted);
+        font-size: 0.82rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: color 180ms ease, background 180ms ease, border-color 180ms ease;
+      }
+
+      .nav-link:hover,
+      .nav-link.is-active {
+        border-color: rgba(56, 189, 248, 0.2);
+        background: rgba(56, 189, 248, 0.08);
+        color: var(--cyan);
+      }
+
+      .hero {
+        display: grid;
+        min-height: 660px;
+        grid-template-columns: minmax(0, 1.12fr) minmax(310px, 0.88fr);
+        align-items: center;
+        gap: 72px;
+        padding-block: 76px 90px;
+      }
+
+      .eyebrow,
+      .section-kicker {
+        color: var(--cyan);
+        font-family: var(--mono);
+        font-size: 0.76rem;
+        font-weight: 600;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 24px;
+      }
+
+      .eyebrow::before {
+        width: 24px;
+        height: 1px;
+        background: var(--cyan);
+        content: "";
+      }
+
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+
+      h1 {
+        max-width: 720px;
+        margin-bottom: 18px;
+        font-size: clamp(3.1rem, 7vw, 5.6rem);
+        font-weight: 800;
+        letter-spacing: -0.075em;
+        line-height: 1.04;
+      }
+
+      .name-accent {
+        color: var(--cyan);
+      }
+
+      .hero-role {
+        margin-bottom: 20px;
+        color: var(--indigo);
+        font-family: var(--mono);
+        font-size: clamp(0.88rem, 1.5vw, 1.02rem);
+      }
+
+      .hero-copy {
+        max-width: 620px;
+        margin-bottom: 30px;
+        color: var(--muted);
+        font-size: 1rem;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .button-link {
+        display: inline-flex;
+        min-height: 48px;
+        align-items: center;
+        justify-content: center;
+        gap: 9px;
+        padding: 11px 18px;
+        border: 1px solid rgba(56, 189, 248, 0.36);
+        border-radius: 12px;
+        background: rgba(56, 189, 248, 0.12);
+        color: var(--text);
+        font-size: 0.87rem;
+        font-weight: 700;
+        text-decoration: none;
+        transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+      }
+
+      .button-link:hover {
+        transform: translateY(-2px);
+        border-color: var(--cyan);
+        background: rgba(56, 189, 248, 0.2);
+      }
+
+      .button-link.secondary {
+        border-color: var(--line);
+        background: rgba(15, 23, 42, 0.54);
+        color: var(--muted);
+      }
+
+      .hero-note {
+        max-width: 480px;
+        margin: 28px 0 0;
+        padding: 13px 16px;
+        border-left: 2px solid var(--cyan);
+        background: rgba(15, 23, 42, 0.48);
+        color: var(--muted);
+        font-size: 0.84rem;
+        font-style: italic;
+      }
+
+      .hero-note cite {
+        display: block;
+        margin-top: 6px;
+        color: var(--indigo);
+        font-family: var(--mono);
+        font-size: 0.72rem;
+        font-style: normal;
+      }
+
+      .portrait-stage {
+        position: relative;
+        width: min(100%, 390px);
+        margin-inline: auto;
+        padding: 18px;
+      }
+
+      .portrait-stage::before,
+      .portrait-stage::after {
+        position: absolute;
+        z-index: -1;
+        border: 1px solid rgba(56, 189, 248, 0.22);
+        border-radius: 28px;
+        content: "";
+        inset: 0;
+        transform: rotate(-5deg);
+      }
+
+      .portrait-stage::after {
+        border-color: rgba(129, 140, 248, 0.2);
+        transform: rotate(4deg);
+      }
+
+      .portrait-frame {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 0.86;
+        border: 1px solid rgba(56, 189, 248, 0.25);
+        border-radius: 24px;
+        background: #182133;
+        box-shadow: 0 30px 90px rgba(0, 0, 0, 0.4), 0 0 45px rgba(56, 189, 248, 0.09);
+      }
+
+      .portrait-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center 24%;
+      }
+
+      .portrait-caption {
+        position: absolute;
+        right: 12px;
+        bottom: 12px;
+        left: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 12px 14px;
+        border: 1px solid rgba(148, 163, 184, 0.2);
+        border-radius: 14px;
+        background: rgba(7, 12, 24, 0.82);
+        backdrop-filter: blur(12px);
+      }
+
+      .portrait-caption strong,
+      .portrait-caption span {
+        display: block;
+      }
+
+      .portrait-caption strong {
+        font-size: 0.82rem;
+      }
+
+      .portrait-caption span {
+        color: var(--muted);
+        font-family: var(--mono);
+        font-size: 0.66rem;
+      }
+
+      .portrait-caption .mu {
+        color: var(--green);
+        font-family: var(--mono);
+        font-size: 0.76rem;
+      }
+
+      .hero-index {
+        position: absolute;
+        top: 4px;
+        right: 0;
+        color: rgba(148, 163, 184, 0.64);
+        font-family: var(--mono);
+        font-size: 0.7rem;
+      }
+
+      .quick-facts {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1px;
+        margin-top: 62px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: var(--line);
+        overflow: hidden;
+      }
+
+      .fact {
+        min-width: 0;
+        padding: 16px;
+        background: rgba(15, 23, 42, 0.82);
+      }
+
+      .fact strong,
+      .fact span {
+        display: block;
+      }
+
+      .fact strong {
+        color: var(--text);
+        font-size: 0.9rem;
+      }
+
+      .fact span {
+        margin-top: 3px;
+        color: var(--muted);
+        font-size: 0.72rem;
+      }
+
+      .section {
+        padding-block: 96px;
+        border-top: 1px solid var(--line);
+      }
+
+      .section-heading {
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        gap: 28px;
+        margin-bottom: 34px;
+      }
+
+      .section-heading h2 {
+        margin: 10px 0 0;
+        font-size: clamp(2rem, 4vw, 3rem);
+        letter-spacing: -0.055em;
+        line-height: 1.15;
+      }
+
+      .section-heading p {
+        max-width: 470px;
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .skill-card {
+        min-height: 210px;
+        padding: 22px;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        background: linear-gradient(145deg, rgba(19, 29, 56, 0.82), rgba(15, 23, 42, 0.64));
+        transition: transform 180ms ease, border-color 180ms ease;
+      }
+
+      .skill-card:hover {
+        transform: translateY(-4px);
+        border-color: rgba(56, 189, 248, 0.42);
+      }
+
+      .skill-index {
+        color: var(--cyan);
+        font-family: var(--mono);
+        font-size: 0.72rem;
+      }
+
+      .skill-card h3 {
+        margin: 22px 0 8px;
+        font-size: 1.03rem;
+      }
+
+      .skill-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 0.8rem;
+      }
+
+      .lab-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+        gap: 20px;
+      }
+
+      .lab-controls,
+      .chart-panel {
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: rgba(15, 23, 42, 0.76);
+      }
+
+      .lab-controls {
+        padding: 24px;
+      }
+
+      .lab-controls h3 {
+        margin-bottom: 6px;
+        font-size: 1.08rem;
+      }
+
+      .lab-controls > p {
+        margin-bottom: 24px;
+        color: var(--muted);
+        font-size: 0.8rem;
+      }
+
+      .slider-group + .slider-group {
+        margin-top: 22px;
+      }
+
+      .slider-label {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 9px;
+        font-size: 0.82rem;
+      }
+
+      .slider-label output {
+        color: var(--cyan);
+        font-family: var(--mono);
+      }
+
+      input[type="range"] {
+        width: 100%;
+        accent-color: var(--cyan);
+      }
+
+      .chart-panel {
+        display: flex;
+        min-height: 290px;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: 20px;
+      }
+
+      .chart-topline {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        color: var(--muted);
+        font-family: var(--mono);
+        font-size: 0.7rem;
+      }
+
+      .chart-topline strong {
+        color: var(--green);
+        font-weight: 500;
+      }
+
+      .distribution-chart {
+        display: block;
+        width: 100%;
+        height: 190px;
+        overflow: visible;
+      }
+
+      .chart-baseline,
+      .chart-guide {
+        stroke: rgba(148, 163, 184, 0.24);
+        stroke-width: 1;
+      }
+
+      .chart-guide {
+        stroke-dasharray: 4 6;
+      }
+
+      .curve-fill {
+        fill: url("#curveGradient");
+      }
+
+      .curve-line {
+        fill: none;
+        stroke: var(--cyan);
+        stroke-linecap: round;
+        stroke-width: 3;
+      }
+
+      .chart-legend {
+        display: flex;
+        justify-content: space-between;
+        color: var(--muted);
+        font-family: var(--mono);
+        font-size: 0.66rem;
+      }
+
+      .portfolio-toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        gap: 18px;
+        margin-bottom: 24px;
+      }
+
+      .filters {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+
+      .filter-button {
+        padding: 9px 13px;
+        border: 1px solid var(--line);
+        border-radius: 999px;
+        background: rgba(15, 23, 42, 0.7);
+        color: var(--muted);
+        cursor: pointer;
+        font-size: 0.75rem;
+        transition: color 160ms ease, background 160ms ease, border-color 160ms ease;
+      }
+
+      .filter-button:hover,
+      .filter-button[aria-pressed="true"] {
+        border-color: rgba(56, 189, 248, 0.4);
+        background: rgba(56, 189, 248, 0.12);
+        color: var(--cyan);
+      }
+
+      .portfolio-count {
+        color: var(--muted);
+        font-family: var(--mono);
+        font-size: 0.72rem;
+      }
+
+      .project-grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 16px;
+      }
+
+      .project-card {
+        min-width: 0;
+        overflow: hidden;
+        border: 1px solid var(--line);
+        border-radius: 17px;
+        background: rgba(15, 23, 42, 0.82);
+        transition: transform 200ms ease, border-color 200ms ease, box-shadow 200ms ease;
+      }
+
+      .project-card:hover {
+        transform: translateY(-5px);
+        border-color: rgba(129, 140, 248, 0.48);
+        box-shadow: 0 18px 38px rgba(0, 0, 0, 0.2);
+      }
+
+      .project-card[hidden] {
+        display: none;
+      }
+
+      .project-image {
+        display: block;
+        width: 100%;
+        height: 190px;
+        object-fit: cover;
+        background: var(--panel);
+      }
+
+      .project-body {
+        padding: 18px;
+      }
+
+      .project-meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px 12px;
+        margin-bottom: 10px;
+        color: var(--cyan);
+        font-family: var(--mono);
+        font-size: 0.64rem;
+      }
+
+      .project-body h3 {
+        margin-bottom: 8px;
+        font-size: 0.98rem;
+        line-height: 1.45;
+      }
+
+      .project-body p {
+        margin-bottom: 14px;
+        color: var(--muted);
+        font-size: 0.78rem;
+        line-height: 1.65;
+      }
+
+      .tag-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .tag {
+        padding: 4px 8px;
+        border: 1px solid rgba(148, 163, 184, 0.15);
+        border-radius: 999px;
+        color: var(--muted);
+        font-size: 0.63rem;
+      }
+
+      .contact-panel {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(260px, 0.72fr);
+        align-items: center;
+        gap: 40px;
+        padding: clamp(24px, 5vw, 48px);
+        border: 1px solid rgba(56, 189, 248, 0.2);
+        border-radius: 24px;
+        background:
+          radial-gradient(ellipse at 96% 5%, rgba(56, 189, 248, 0.12), transparent 42%),
+          rgba(15, 23, 42, 0.78);
+      }
+
+      .contact-panel h2 {
+        margin: 10px 0 12px;
+        font-size: clamp(2rem, 4vw, 3rem);
+        letter-spacing: -0.06em;
+        line-height: 1.14;
+      }
+
+      .contact-copy {
+        max-width: 560px;
+        margin-bottom: 0;
+        color: var(--muted);
+        font-size: 0.88rem;
+      }
+
+      .contact-list {
+        display: grid;
+        gap: 10px;
+      }
+
+      .contact-item {
+        display: flex;
+        min-width: 0;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        padding: 12px 14px;
+        border: 1px solid var(--line);
+        border-radius: 12px;
+        background: rgba(7, 12, 24, 0.48);
+        text-decoration: none;
+        transition: border-color 160ms ease, color 160ms ease;
+      }
+
+      .contact-item:hover {
+        border-color: rgba(56, 189, 248, 0.4);
+        color: var(--cyan);
+      }
+
+      .contact-label {
+        color: var(--muted);
+        font-family: var(--mono);
+        font-size: 0.66rem;
+      }
+
+      .contact-value {
+        overflow-wrap: anywhere;
+        font-size: 0.79rem;
+        font-weight: 600;
+        text-align: right;
+      }
+
+      .contact-bottom {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 10px;
+        margin-top: 18px;
+      }
+
+      .copy-button {
+        min-height: 42px;
+        padding: 9px 13px;
+        border: 1px solid rgba(56, 189, 248, 0.3);
+        border-radius: 10px;
+        background: rgba(56, 189, 248, 0.1);
+        color: var(--cyan);
+        cursor: pointer;
+        font-size: 0.75rem;
+        font-weight: 700;
+        transition: background 160ms ease, transform 160ms ease;
+      }
+
+      .copy-button:hover {
+        transform: translateY(-2px);
+        background: rgba(56, 189, 248, 0.18);
+      }
+
+      .copy-status {
+        min-height: 1.2em;
+        color: var(--green);
+        font-size: 0.72rem;
+      }
+
+      .footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding-block: 24px 32px;
+        color: var(--muted);
+        font-family: var(--mono);
+        font-size: 0.68rem;
+      }
+
+      .footer a {
+        color: var(--cyan);
+        text-decoration: none;
+      }
+
+      @keyframes reveal {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero-copy-block {
+        animation: reveal 600ms cubic-bezier(0.16, 1, 0.3, 1) both;
+      }
+
+      .portrait-stage {
+        animation: reveal 700ms 100ms cubic-bezier(0.16, 1, 0.3, 1) both;
+      }
+
+      @media (max-width: 900px) {
+        .hero {
+          min-height: 0;
+          grid-template-columns: minmax(0, 1fr) minmax(260px, 0.72fr);
+          gap: 36px;
+          padding-block: 70px;
         }
 
-        * { 
-            box-sizing: border-box; 
-            margin: 0; 
-            padding: 0; 
-            font-family: 'Plus Jakarta Sans', sans-serif; 
+        .skills-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
         }
 
-        body { 
-            background-color: var(--bg-main); 
-            color: var(--text-main); 
-            line-height: 1.6; 
-            overflow-x: hidden;
-            background-image: 
-                radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.05) 0%, transparent 40%),
-                radial-gradient(circle at 90% 80%, rgba(129, 140, 248, 0.05) 0%, transparent 40%);
+        .project-grid {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 680px) {
+        html {
+          scroll-padding-top: 114px;
         }
 
-        nav { 
-            background-color: rgba(6, 11, 24, 0.7); 
-            backdrop-filter: blur(16px); 
-            -webkit-backdrop-filter: blur(16px);
-            padding: 1.2rem; 
-            position: sticky; 
-            top: 0; 
-            z-index: 100; 
-            text-align: center; 
-            border-bottom: 1px solid rgba(255,255,255,0.06); 
+        .shell {
+          width: min(100% - 32px, 540px);
         }
 
-        nav button { 
-            background: none; 
-            border: none; 
-            color: var(--text-muted); 
-            font-size: 0.95rem; 
-            font-weight: 600; 
-            padding: 0.6rem 1.5rem; 
-            cursor: pointer; 
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
-            border-radius: 20px; 
-            margin: 0 0.2rem; 
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
+        .nav-inner {
+          min-height: 68px;
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 5px 12px;
+          padding-block: 10px;
         }
 
-        nav button:hover { 
-            color: var(--text-main); 
-            background-color: rgba(255, 255, 255, 0.03); 
+        .brand {
+          width: 100%;
+          justify-content: center;
         }
 
-        nav button.active { 
-            color: var(--accent); 
-            background-color: rgba(56, 189, 248, 0.08); 
-            border: 1px solid rgba(56, 189, 248, 0.15);
-            box-shadow: 0 4px 15px rgba(56, 189, 248, 0.05);
+        .nav-links {
+          width: 100%;
+          justify-content: center;
+          gap: 2px;
         }
 
-        .container { 
-            max-width: 1000px; 
-            margin: 3rem auto; 
-            padding: 0 1.5rem; 
+        .nav-link {
+          padding: 7px 9px;
+          font-size: 0.7rem;
         }
 
-        .page { 
-            display: none; 
-            background: var(--bg-card); 
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            padding: 3rem; 
-            border-radius: 24px; 
-            border: 1px solid rgba(255,255,255,0.05); 
-            box-shadow: 0 25px 50px -12px rgba(0,0,0,0.4); 
+        .hero {
+          grid-template-columns: 1fr;
+          gap: 42px;
+          padding-block: 54px 64px;
         }
 
-        .page.active { 
-            display: block; 
-            animation: slideUp 0.5s cubic-bezier(0.16, 1, 0.3, 1); 
+        h1 {
+          font-size: clamp(3rem, 14vw, 4.4rem);
         }
 
-        .hero { 
-            text-align: center; 
-            padding: 1.5rem 0; 
+        .portrait-stage {
+          width: min(82%, 330px);
         }
 
-        .profile-img-container { 
-            position: relative; 
-            width: 190px; 
-            height: 190px; 
-            margin: 0 auto 2.5rem auto; 
+        .quick-facts {
+          margin-top: 44px;
         }
 
-        .profile-img { 
-            width: 100%; 
-            height: 100%; 
-            border-radius: 50%; 
-            object-fit: cover; 
-            border: 1px solid rgba(56, 189, 248, 0.3); 
-            padding: 6px; 
-            background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(129, 140, 248, 0.2)); 
-            box-shadow: 0 10px 30px rgba(56, 189, 248, 0.15);
+        .fact {
+          padding: 12px 10px;
         }
 
-        .stats-overlay { 
-            position: absolute; 
-            bottom: -5px; 
-            right: -5px; 
-            background: #0f172a; 
-            color: var(--accent-green); 
-            padding: 6px 12px; 
-            border-radius: 10px; 
-            font-size: 0.75rem; 
-            font-weight: 700; 
-            font-family: 'JetBrains Mono', monospace; 
-            border: 1px solid var(--accent-green);
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4); 
+        .fact strong {
+          font-size: 0.76rem;
         }
 
-        .hero h1 { 
-            font-size: 3rem; 
-            margin-bottom: 0.6rem; 
-            font-weight: 800; 
-            letter-spacing: -0.03em; 
-            background: linear-gradient(135deg, #ffffff 40%, #94a3b8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .fact span {
+          font-size: 0.63rem;
         }
 
-        .tagline { 
-            font-family: 'JetBrains Mono', monospace; 
-            color: var(--accent); 
-            font-size: 1.05rem; 
-            font-weight: 600;
-            margin-bottom: 2rem; 
+        .section {
+          padding-block: 70px;
         }
 
-        .stat-quote { 
-            background: rgba(56, 189, 248, 0.02); 
-            border-left: 3px solid var(--accent); 
-            padding: 1.2rem 1.5rem; 
-            border-radius: 0 12px 12px 0; 
-            max-width: 600px; 
-            margin: 2.5rem auto 0 auto; 
-            text-align: left; 
-            border-top: 1px solid rgba(255,255,255,0.02);
-            border-bottom: 1px solid rgba(255,255,255,0.02);
+        .section-heading {
+          align-items: start;
+          flex-direction: column;
+          gap: 13px;
+          margin-bottom: 26px;
         }
 
-        .stat-quote p { 
-            font-style: italic; 
-            color: var(--text-muted); 
-            font-size: 0.95rem; 
+        .skills-grid {
+          gap: 10px;
         }
 
-        .stat-quote span { 
-            display: block; 
-            margin-top: 0.5rem; 
-            color: var(--accent-purple); 
-            font-weight: 600; 
-            font-size: 0.85rem; 
-            font-family: 'JetBrains Mono', monospace;
+        .skill-card {
+          min-height: 185px;
+          padding: 17px;
         }
 
-        h2 { 
-            font-size: 1.8rem; 
-            font-weight: 800; 
-            margin-bottom: 1.8rem; 
-            color: var(--text-main); 
-            letter-spacing: -0.02em;
-            display: flex; 
-            align-items: center; 
-            gap: 0.7rem; 
+        .lab-layout,
+        .contact-panel {
+          grid-template-columns: 1fr;
         }
 
-        h2 i {
-            color: var(--accent);
+        .project-grid {
+          grid-template-columns: 1fr;
         }
 
-        .skills-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); 
-            gap: 1.2rem; 
-            margin-top: 1.5rem; 
+        .project-image {
+          height: 220px;
         }
 
-        .skill-box { 
-            background: rgba(255, 255, 255, 0.02); 
-            border: 1px solid rgba(255,255,255,0.05); 
-            padding: 1.8rem 1.5rem; 
-            border-radius: 16px; 
-            text-align: center; 
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
+        .contact-panel {
+          gap: 25px;
         }
 
-        .skill-box:hover { 
-            transform: translateY(-5px); 
-            border-color: var(--accent); 
-            background: rgba(56, 189, 248, 0.03); 
-            box-shadow: 0 15px 30px -10px rgba(56, 189, 248, 0.15);
+        .footer {
+          align-items: start;
+          flex-direction: column;
         }
+      }
 
-        .skill-box i { 
-            font-size: 2.2rem; 
-            color: var(--accent); 
-            margin-bottom: 0.8rem; 
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
         }
-
-        .skill-box h4 { 
-            font-size: 1.1rem; 
-            font-weight: 700;
-            margin-bottom: 0.4rem; 
-            color: var(--text-main);
-        }
-
-        .skill-box p { 
-            font-size: 0.85rem; 
-            color: var(--text-muted); 
-            font-family: 'JetBrains Mono', monospace; 
-        }
-
-        .gallery { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); 
-            gap: 2rem; 
-            margin-top: 1.5rem; 
-        }
-
-        .gallery-item { 
-            background: rgba(15, 23, 42, 0.6); 
-            border: 1px solid rgba(255,255,255,0.05); 
-            border-radius: 20px; 
-            overflow: hidden; 
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); 
-            text-align: left; 
-        }
-
-        .gallery-item:hover { 
-            transform: translateY(-6px); 
-            border-color: var(--accent-purple); 
-            box-shadow: 0 20px 40px -15px rgba(129, 140, 248, 0.2); 
-        }
-
-        .gallery-item img { 
-            width: 100%; 
-            height: 210px; 
-            object-fit: cover; 
-            display: block; 
-            border-bottom: 1px solid rgba(255,255,255,0.05); 
-        }
-
-        .gallery-desc { 
-            padding: 1.6rem; 
-        }
-
-        .gallery-desc h3 { 
-            font-size: 1.25rem; 
-            margin-bottom: 0.6rem; 
-            color: var(--text-main); 
-            font-weight: 700; 
-        }
-
-        .gallery-desc p { 
-            color: var(--text-muted); 
-            font-size: 0.95rem; 
-            line-height: 1.5;
-        }
-
-        .profile-container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 40px;
-            margin-top: 2rem;
-        }
-        
-        .profile-info {
-            flex: 1.2;
-        }
-
-        .info-list { 
-            list-style: none !important; 
-            padding: 1.5rem !important;
-            margin: 0 0 25px 0 !important;
-            background: rgba(255,255,255,0.02) !important;
-            border-radius: 16px !important;
-            border: 1px solid rgba(255,255,255,0.04) !important;
-        }
-
-        .info-list li { 
-            display: grid !important;
-            grid-template-columns: 35px 140px auto !important;
-            align-items: center !important;
-            padding: 0.8rem 0 !important;
-            border-bottom: 1px solid rgba(255,255,255,0.04) !important;
-            font-size: 1rem !important;
-            color: var(--text-main) !important;
-        }
-
-        .info-list li:last-child {
-            border-bottom: none !important;
-        }
-
-        .info-list li i {
-            color: var(--accent);
-            font-size: 1.1rem;
-        }
-
-        .info-list strong { 
-            color: var(--text-muted) !important; 
-            font-weight: 600 !important; 
-            font-size: 0.85rem !important;
-            text-transform: uppercase !important;
-            letter-spacing: 0.05em !important;
-        }
-
-        .social-links { 
-            display: flex !important; 
-            justify-content: flex-start !important; 
-            gap: 1.2rem !important; 
-            margin-top: 2rem !important; 
-            padding: 0 !important;
-            border: none !important;
-        }
-
-        .social-links a { 
-            display: flex !important;
-            justify-content: center !important;
-            align-items: center !important;
-            width: 48px !important;
-            height: 48px !important;
-            background: rgba(255, 255, 255, 0.02) !important;
-            border: 1px solid rgba(255, 255, 255, 0.05) !important;
-            color: var(--text-muted) !important; 
-            font-size: 1.4rem !important; 
-            border-radius: 14px !important;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important; 
-            text-decoration: none !important; 
-        }
-
-        .social-links a:hover { 
-            color: #fff !important; 
-            background: var(--accent) !important;
-            border-color: var(--accent) !important;
-            transform: translateY(-5px) !important; 
-            box-shadow: 0 10px 20px rgba(56, 189, 248, 0.25) !important;
-        }
-
-        .profile-photo {
-            flex: 0.8;
-            display: flex;
-            justify-content: center;
-        }
-        
-        .profile-photo img {
-            width: 100%;
-            max-width: 280px;
-            height: auto;
-            object-fit: cover;
-            border-radius: 24px;
-            border: 1px solid rgba(255,255,255,0.05);
-            padding: 6px;
-            background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(129, 140, 248, 0.1));
-            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
-        }
-
-        @keyframes slideUp { 
-            from { opacity: 0; transform: translateY(15px); filter: blur(4px); } 
-            to { opacity: 1; transform: translateY(0); filter: blur(0); } 
-        }
-
-        @media (max-width: 768px) {
-            .page { padding: 2rem 1.2rem; }
-            .hero h1 { font-size: 2.3rem; }
-            .profile-container { flex-direction: column-reverse; gap: 30px; }
-            .info-list li { grid-template-columns: 30px 120px auto !important; font-size: 0.9rem !important; }
-            .social-links { justify-content: center !important; }
-            .profile-photo img { max-width: 220px; }
-        }
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
+    <header class="topbar" data-testid="site-navigation">
+      <div class="shell nav-inner">
+        <a class="brand" href="#home" data-testid="brand-home-link">
+          <span class="brand-mark" aria-hidden="true">∫</span>
+          <span data-testid="brand-name">Pangeran C. E.</span>
+        </a>
+        <nav class="nav-links" aria-label="Navigasi utama">
+          <a class="nav-link is-active" href="#home" data-testid="nav-home-link">Beranda</a>
+          <a class="nav-link" href="#kompetensi" data-testid="nav-skills-link">Kompetensi</a>
+          <a class="nav-link" href="#portfolio" data-testid="nav-portfolio-link">Portfolio</a>
+          <a class="nav-link" href="#kontak" data-testid="nav-contact-link">Kontak</a>
+        </nav>
+      </div>
+    </header>
 
-    <nav>
-        <button id="btn-home" class="active" onclick="bukaHalaman('home')"><i class="fa-solid fa-chart-pie"></i> Home</button>
-        <button id="btn-about" onclick="bukaHalaman('about')"><i class="fa-solid fa-terminal"></i> About</button>
-        <button id="btn-portfolio" onclick="bukaHalaman('portfolio')"><i class="fa-solid fa-database"></i> Portfolio</button>
-        <button id="btn-profile" onclick="bukaHalaman('profile')"><i class="fa-solid fa-sliders"></i> Profile</button>
-    </nav>
-
-    <div class="container">
-        <section id="page-home" class="page active">
-            <div class="hero">
-                <div class="profile-img-container">
-                    <img src="foto-profil.jpeg" alt="Pangeran" class="profile-img">
-                    <div class="stats-overlay">μ = Pangeran</div>
-                </div>
-                <h1>Pangeran</h1>
-                <div class="tagline">Data Speaks. We Translate. | Statistics Student</div>
-                <p style="font-size: 1.1rem; color: var(--text-muted); max-width: 600px; margin: 0 auto;">
-                    Halo! Saya Pangeran, mahasiswa program studi Statistika yang antusias dalam menerjemahkan angka menjadi wawasan yang bermakna. Berfokus pada analisis data kuantitatif, pemodelan statistik, dan eksplorasi sains data untuk memecahkan masalah nyata.
-                </p>
-                <div class="stat-quote">
-                    <p>"In God we trust, all others must bring data."</p>
-                    <span>— W. Edwards Deming</span>
-                </div>
+    <main>
+      <section class="shell hero" id="home" aria-labelledby="hero-title">
+        <div class="hero-copy-block">
+          <div class="eyebrow" data-testid="hero-eyebrow">Statistika · Universitas Cenderawasih</div>
+          <h1 id="hero-title" data-testid="hero-title">
+            Halo, saya <span class="name-accent">Pangeran.</span>
+          </h1>
+          <p class="hero-role" data-testid="hero-role">
+            Mahasiswa Statistika &nbsp;·&nbsp; Jayapura, Papua
+          </p>
+          <p class="hero-copy" data-testid="hero-introduction">
+            Saya tertarik menerjemahkan angka menjadi wawasan yang bermakna—melalui
+            analisis kuantitatif, pemodelan statistik, dan eksplorasi data untuk memahami
+            persoalan nyata.
+          </p>
+          <div class="hero-actions">
+            <a class="button-link" href="#portfolio" data-testid="hero-portfolio-link">
+              Jelajahi portfolio <span aria-hidden="true">↗</span>
+            </a>
+            <a class="button-link secondary" href="#kontak" data-testid="hero-contact-link">
+              Hubungi saya
+            </a>
+          </div>
+          <blockquote class="hero-note" data-testid="hero-quote">
+            “In God we trust, all others must bring data.”
+            <cite>— W. Edwards Deming</cite>
+          </blockquote>
+          <div class="quick-facts" aria-label="Ringkasan portfolio">
+            <div class="fact" data-testid="fact-university">
+              <strong>UNCEN</strong>
+              <span>Universitas Cenderawasih</span>
             </div>
-        </section>
-
-        <section id="page-about" class="page">
-            <h2><i class="fa-solid fa-chart-line"></i> Metode & Kompetensi</h2>
-            <p style="color: var(--text-muted); margin-bottom: 2rem;">Saya mempelajari pola, mengekstrak informasi, dan mereduksi ketidakpastian dari kompleksitas sekumpulan data murni guna mendukung pengambilan keputusan berbasis bukti empiris.</p>
-            
-            <div class="skills-grid">
-                <div class="skill-box">
-                    <i class="fa-solid fa-square-root-variable"></i>
-                    <h4>Analisis Prediktif</h4>
-                    <p>Regresi & Time Series</p>
-                </div>
-                <div class="skill-box">
-                    <i class="fa-solid fa-laptop-code"></i>
-                    <h4>Komputasi Data</h4>
-                    <p>R, Python, SPSS</p>
-                </div>
-                <div class="skill-box">
-                    <i class="fa-solid fa-vial-circle-check"></i>
-                    <h4>Uji Hipotesis</h4>
-                    <p>Parametrik & Non-Para</p>
-                </div>
-                <div class="skill-box">
-                    <i class="fa-solid fa-chart-simple"></i>
-                    <h4>Visualisasi Data</h4>
-                    <p>ggplot2, Seaborn, Tableau</p>
-                </div>
+            <div class="fact" data-testid="fact-focus">
+              <strong>Statistika</strong>
+              <span>Analisis &amp; pemodelan</span>
             </div>
-        </section>
-
-        <section id="page-portfolio" class="page">
-            <h2><i class="fa-solid fa-folder-open"></i> Eksplorasi & Kegiatan</h2>
-            <p style="color: var(--text-muted); margin-bottom: 2rem;">Dokumentasi riwayat riset lapangan, survei, kepanitiaan, dan aktivitas akademik yang telah saya selesaikan:</p>
-            
-            <div class="gallery">
-                <div class="gallery-item">
-                    <img src="kegiatan1.jpeg" alt="Foto Kegiatan 1"> 
-                    <div class="gallery-desc"><h3>Latihan Dasar Kepemimpinan OSIS/MPK</h3><p>Pembentukan karakter dan kedisiplinan pengurus OSIS melalui Latihan Dasar Kepemimpinan yang diselenggarakan di Rindam XVII/Cenderawasih. (16–18 Januari 2025)</p></div>
-                </div>
-                <div class="gallery-item">
-                    <img src="kegiatan2.jpeg" alt="Foto Kegiatan 2">
-                    <div class="gallery-desc"><h3>Kolaborasi Strategis OSIS × GO</h3><p>Pertemuan strategis pengurus OSIS SMAN 4 Jayapura bersama Ganesha Operation (GO) guna membahas rencana kolaborasi program serta penguatan aspek leadership. (16 Juli 2025)</p></div>
-                </div>
-                <div class="gallery-item">
-                    <img src="kegiatan3.jpeg" alt="Foto Kegiatan 3">
-                    <div class="gallery-desc"><h3> Kepanitiaan Purnawidya SMAN 4 Jayapura</h3><p>Pengalaman mengelola jalannya upacara kelulusan resmi angkatan 2025 SMAN 4 Jayapura melalui kerja sama tim berskala besar pada 5 Mei 2025.</p></div>
-                </div>
-                <div class="gallery-item">
-                    <img src="kegiatan4.jpeg" alt="Foto Kegiatan 4">
-                    <div class="gallery-desc"><h3>Mathematics Bootcamp</h3><p>Program pelatihan intensif mencakup penguasaan matematika, statistika, optimalisasi MS Office, academic writing, serta peningkatan kapasitas public speaking dan pengembangan diri. (Agustus–Oktober 2026)</p></div>
-                </div>
-                <div class="gallery-item">
-                    <img src="kegiatan5.jpeg" alt="Foto Kegiatan 5">
-                    <div class="gallery-desc"><h3>Kunjungan Kasih & Pengabdian Masyarakat</h3><p>Menginisiasi dan memimpin pelaksanaan program anjangsana ke Panti Asuhan Yaa Bunayya sebagai bentuk kepedulian sosial, mengasah kemampuan manajemen logistik serta komunikasi publik organisasi. (25 Februari 2025)</p></div>
-                </div>
-                <div class="gallery-item">
-                    <img src="kegiatan6.jpeg" alt="Foto Kegiatan 6">
-                    <div class="gallery-desc"><h3>Seminar Pengembangan Soft Skill Esensial</h3><p>Sukses menyelenggarakan talkshow edukatif era digital bagi siswa SMA dengan menggandeng narasumber dari mahasiswa program studi Manajemen Universitas Indonesia dan Moderator dari Duta GenRe Papua guna membangun kesadaran karier masa depan. (10 April 2025)</p></div>
-                </div>
+            <div class="fact" data-testid="fact-experience">
+              <strong>6 kegiatan</strong>
+              <span>Pengalaman terpilih</span>
             </div>
-        </section>
+          </div>
+        </div>
 
-        <section id="page-profile" class="page">
-            <h2><i class="fa-solid fa-id-card"></i> Connect With Me</h2>
-            
-            <div class="profile-container">
-                <div class="profile-info">
-                    <ul class="info-list">
-                        <li><i class="fa-solid fa-signature"></i> <strong>Nama Lengkap:</strong> Pangeran Candraning Edhi</li>
-                        <li><i class="fa-solid fa-envelope-open-text"></i> <strong>Email:</strong> pangeran3ce@gmail.com</li>
-                        <li><i class="fa-solid fa-mobile-screen-button"></i> <strong>No. Telepon:</strong> +62 813-6370-2015</li>
-                        <li><i class="fa-solid fa-network-wired"></i> <strong>Bidang Peminatan:</strong> Data Science & Quantitative Analyst</li>
-                    </ul>
-
-                    <div class="social-links">
-                        <a href="https://www.instagram.com/pangeran_ce3?dlrf=MTNyYWgit29wZHBqeA==" target="_blank" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://www.linkedin.com/in/pangeran-candraning-edhi-aa96683bb" target="_blank" title="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
-                        <a href="https://github.com/Panca0901" target="_blank" title="GitHub"><i class="fa-brands fa-github"></i></a>
-                    </div>
-                </div>
-
-                <div class="profile-photo">
-                    <img src="no bc.png" alt="Foto Pangeran">
-                </div>
+        <div class="portrait-stage" data-testid="profile-portrait-stage">
+          <span class="hero-index" data-testid="portrait-index">PROFILE / 001</span>
+          <div class="portrait-frame">
+            <img
+              src="foto-profil.jpeg"
+              alt="Foto profil Pangeran Candraning Edhi"
+              data-testid="profile-photo"
+            />
+            <div class="portrait-caption" data-testid="profile-caption">
+              <div>
+                <strong data-testid="profile-caption-name">Pangeran Candraning Edhi</strong>
+                <span data-testid="profile-caption-study">Statistics student · UNCEN</span>
+              </div>
+              <span class="mu" aria-label="mu sama dengan Pangeran">μ = P</span>
             </div>
-        </section>
-    </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="kompetensi" aria-labelledby="skills-title">
+        <div class="shell">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker" data-testid="skills-kicker">01 / Fokus belajar</span>
+              <h2 id="skills-title" data-testid="skills-title">Metode &amp; kompetensi</h2>
+            </div>
+            <p data-testid="skills-description">
+              Area statistika dan perangkat analisis yang sedang saya pelajari dan
+              kembangkan selama studi.
+            </p>
+          </div>
+          <div class="skills-grid">
+            <article class="skill-card" data-testid="skill-predictive-analysis">
+              <span class="skill-index">01 — MODEL</span>
+              <h3 data-testid="skill-predictive-title">Analisis prediktif</h3>
+              <p data-testid="skill-predictive-description">Regresi, pemodelan, dan analisis deret waktu.</p>
+            </article>
+            <article class="skill-card" data-testid="skill-data-computing">
+              <span class="skill-index">02 — COMPUTE</span>
+              <h3 data-testid="skill-computing-title">Komputasi data</h3>
+              <p data-testid="skill-computing-description">Eksplorasi data dengan R, Python, dan SPSS.</p>
+            </article>
+            <article class="skill-card" data-testid="skill-hypothesis-testing">
+              <span class="skill-index">03 — INFERENCE</span>
+              <h3 data-testid="skill-hypothesis-title">Uji hipotesis</h3>
+              <p data-testid="skill-hypothesis-description">Pendekatan parametrik dan nonparametrik.</p>
+            </article>
+            <article class="skill-card" data-testid="skill-data-visualization">
+              <span class="skill-index">04 — VISUALIZE</span>
+              <h3 data-testid="skill-visualization-title">Visualisasi data</h3>
+              <p data-testid="skill-visualization-description">Menyajikan temuan dengan ggplot2 dan Seaborn.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="lab" aria-labelledby="lab-title">
+        <div class="shell">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker" data-testid="lab-kicker">02 / Eksplorasi interaktif</span>
+              <h2 id="lab-title" data-testid="lab-title">Laboratorium distribusi</h2>
+            </div>
+            <p data-testid="lab-description">
+              Geser nilai rata-rata dan simpangan baku untuk melihat perubahan kurva normal.
+            </p>
+          </div>
+          <div class="lab-layout" data-testid="distribution-lab">
+            <div class="lab-controls">
+              <h3 data-testid="lab-controls-title">Atur parameter</h3>
+              <p data-testid="lab-controls-description">Kurva diperbarui langsung saat parameter berubah.</p>
+              <div class="slider-group">
+                <label class="slider-label" for="mean-slider">
+                  <span data-testid="mean-label">Mean (μ)</span>
+                  <output id="mean-output" for="mean-slider" data-testid="mean-output">0.0</output>
+                </label>
+                <input
+                  id="mean-slider"
+                  type="range"
+                  min="-3"
+                  max="3"
+                  step="0.1"
+                  value="0"
+                  data-testid="mean-slider"
+                />
+              </div>
+              <div class="slider-group">
+                <label class="slider-label" for="sigma-slider">
+                  <span data-testid="sigma-label">Simpangan baku (σ)</span>
+                  <output id="sigma-output" for="sigma-slider" data-testid="sigma-output">1.0</output>
+                </label>
+                <input
+                  id="sigma-slider"
+                  type="range"
+                  min="0.5"
+                  max="2.5"
+                  step="0.1"
+                  value="1"
+                  data-testid="sigma-slider"
+                />
+              </div>
+            </div>
+            <div class="chart-panel" data-testid="distribution-chart-panel">
+              <div class="chart-topline">
+                <span data-testid="chart-title">NORMAL DISTRIBUTION</span>
+                <strong data-testid="chart-status">LIVE · N(μ, σ²)</strong>
+              </div>
+              <svg
+                class="distribution-chart"
+                viewBox="0 0 480 190"
+                role="img"
+                aria-label="Kurva distribusi normal yang berubah sesuai parameter"
+                data-testid="distribution-chart"
+              >
+                <defs>
+                  <linearGradient id="curveGradient" x1="0" x2="0" y1="0" y2="1">
+                    <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.3" />
+                    <stop offset="100%" stop-color="#38bdf8" stop-opacity="0.01" />
+                  </linearGradient>
+                </defs>
+                <line class="chart-guide" x1="240" y1="24" x2="240" y2="164" />
+                <line class="chart-baseline" x1="16" y1="164" x2="464" y2="164" />
+                <path class="curve-fill" id="curve-fill" d="" />
+                <path class="curve-line" id="curve-line" d="" />
+              </svg>
+              <div class="chart-legend" aria-label="Rentang sumbu">
+                <span data-testid="chart-range-left">−4σ</span>
+                <span data-testid="chart-center">μ</span>
+                <span data-testid="chart-range-right">+4σ</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="portfolio" aria-labelledby="portfolio-title">
+        <div class="shell">
+          <div class="section-heading">
+            <div>
+              <span class="section-kicker" data-testid="portfolio-kicker">03 / Perjalanan &amp; pengalaman</span>
+              <h2 id="portfolio-title" data-testid="portfolio-title">Portfolio kegiatan</h2>
+            </div>
+            <p data-testid="portfolio-description">
+              Pilihan pengalaman belajar, kepemimpinan, dan pengabdian dari dokumentasi
+              yang tersedia.
+            </p>
+          </div>
+          <div class="portfolio-toolbar">
+            <div class="filters" role="group" aria-label="Filter kegiatan">
+              <button class="filter-button" type="button" data-filter="all" aria-pressed="true" data-testid="filter-all-button">Semua</button>
+              <button class="filter-button" type="button" data-filter="academic" aria-pressed="false" data-testid="filter-academic-button">Akademik</button>
+              <button class="filter-button" type="button" data-filter="leadership" aria-pressed="false" data-testid="filter-leadership-button">Kepemimpinan</button>
+              <button class="filter-button" type="button" data-filter="community" aria-pressed="false" data-testid="filter-community-button">Pengabdian</button>
+              <button class="filter-button" type="button" data-filter="event" aria-pressed="false" data-testid="filter-event-button">Acara</button>
+            </div>
+            <span class="portfolio-count" aria-live="polite" data-testid="portfolio-count">6 pengalaman</span>
+          </div>
+          <div class="project-grid" data-testid="project-grid">
+            <article class="project-card" data-category="leadership" data-testid="project-leadership-training">
+              <img class="project-image" src="kegiatan1.jpeg" alt="Peserta latihan dasar kepemimpinan bersama-sama" loading="lazy" data-testid="project-image-leadership" />
+              <div class="project-body">
+                <div class="project-meta"><span data-testid="project-date-leadership">16–18 Januari 2025</span><span data-testid="project-location-leadership">Rindam XVII/Cenderawasih</span></div>
+                <h3 data-testid="project-title-leadership">Latihan Dasar Kepemimpinan OSIS/MPK</h3>
+                <p data-testid="project-description-leadership">Pembentukan karakter, kedisiplinan, dan manajemen kepemimpinan dalam kegiatan latihan dasar pengurus OSIS.</p>
+                <div class="tag-list" aria-label="Kategori kegiatan">
+                  <span class="tag" data-testid="tag-leadership">Kepemimpinan</span>
+                  <span class="tag" data-testid="tag-organization">Organisasi</span>
+                </div>
+              </div>
+            </article>
+            <article class="project-card" data-category="leadership" data-testid="project-strategic-collaboration">
+              <img class="project-image" src="kegiatan2.jpeg" alt="Pertemuan siswa bersama tim Ganesha Operation" loading="lazy" data-testid="project-image-collaboration" />
+              <div class="project-body">
+                <div class="project-meta"><span data-testid="project-date-collaboration">16 Juli 2025</span><span data-testid="project-location-collaboration">Jayapura</span></div>
+                <h3 data-testid="project-title-collaboration">Kolaborasi Strategis OSIS × Ganesha Operation</h3>
+                <p data-testid="project-description-collaboration">Pertemuan untuk membahas rencana kolaborasi program serta penguatan aspek kepemimpinan dan akademik.</p>
+                <div class="tag-list" aria-label="Kategori kegiatan">
+                  <span class="tag" data-testid="tag-collaboration">Kolaborasi</span>
+                  <span class="tag" data-testid="tag-education">Pendidikan</span>
+                </div>
+              </div>
+            </article>
+            <article class="project-card" data-category="event" data-testid="project-graduation-committee">
+              <img class="project-image" src="kegiatan3.jpeg" alt="Panitia dan siswa pada acara Purnawidya SMAN 4 Jayapura" loading="lazy" data-testid="project-image-graduation" />
+              <div class="project-body">
+                <div class="project-meta"><span data-testid="project-date-graduation">5 Mei 2025</span><span data-testid="project-location-graduation">Jayapura</span></div>
+                <h3 data-testid="project-title-graduation">Kepanitiaan Purnawidya SMAN 4 Jayapura</h3>
+                <p data-testid="project-description-graduation">Pengalaman koordinasi tim lintas divisi dalam pelaksanaan upacara kelulusan angkatan 2025.</p>
+                <div class="tag-list" aria-label="Kategori kegiatan">
+                  <span class="tag" data-testid="tag-event-management">Manajemen acara</span>
+                  <span class="tag" data-testid="tag-coordination">Koordinasi</span>
+                </div>
+              </div>
+            </article>
+            <article class="project-card" data-category="academic" data-testid="project-mathematics-bootcamp">
+              <img class="project-image" src="kegiatan4.jpeg" alt="Peserta kegiatan Mathematics Bootcamp" loading="lazy" data-testid="project-image-bootcamp" />
+              <div class="project-body">
+                <div class="project-meta"><span data-testid="project-date-bootcamp">Agustus–Oktober 2026</span><span data-testid="project-location-bootcamp">Jayapura</span></div>
+                <h3 data-testid="project-title-bootcamp">Mathematics Bootcamp</h3>
+                <p data-testid="project-description-bootcamp">Program pelatihan matematika, statistika, optimalisasi MS Office, penulisan akademik, dan pengembangan diri.</p>
+                <div class="tag-list" aria-label="Kategori kegiatan">
+                  <span class="tag" data-testid="tag-mathematics">Matematika</span>
+                  <span class="tag" data-testid="tag-academic">Akademik</span>
+                </div>
+              </div>
+            </article>
+            <article class="project-card" data-category="community" data-testid="project-community-service">
+              <img class="project-image" src="kegiatan5.jpeg" alt="Kunjungan komunitas sekolah ke panti asuhan" loading="lazy" data-testid="project-image-community" />
+              <div class="project-body">
+                <div class="project-meta"><span data-testid="project-date-community">25 Februari 2025</span><span data-testid="project-location-community">Jayapura</span></div>
+                <h3 data-testid="project-title-community">Kunjungan Kasih &amp; Pengabdian Masyarakat</h3>
+                <p data-testid="project-description-community">Kegiatan sosial yang melatih koordinasi logistik, kerja tim, dan komunikasi dengan komunitas.</p>
+                <div class="tag-list" aria-label="Kategori kegiatan">
+                  <span class="tag" data-testid="tag-community-service">Pengabdian</span>
+                  <span class="tag" data-testid="tag-social-impact">Dampak sosial</span>
+                </div>
+              </div>
+            </article>
+            <article class="project-card" data-category="event" data-testid="project-soft-skills-seminar">
+              <img class="project-image" src="kegiatan6.jpeg" alt="Peserta seminar pengembangan soft skill" loading="lazy" data-testid="project-image-seminar" />
+              <div class="project-body">
+                <div class="project-meta"><span data-testid="project-date-seminar">10 April 2025</span><span data-testid="project-location-seminar">Jayapura</span></div>
+                <h3 data-testid="project-title-seminar">Seminar Pengembangan Soft Skill Esensial</h3>
+                <p data-testid="project-description-seminar">Talkshow edukatif untuk siswa SMA bersama narasumber dari Universitas Indonesia dan Duta GenRe Papua.</p>
+                <div class="tag-list" aria-label="Kategori kegiatan">
+                  <span class="tag" data-testid="tag-seminar">Seminar</span>
+                  <span class="tag" data-testid="tag-public-speaking">Komunikasi</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="kontak" aria-labelledby="contact-title">
+        <div class="shell">
+          <div class="contact-panel" data-testid="contact-panel">
+            <div>
+              <span class="section-kicker" data-testid="contact-kicker">04 / Terhubung</span>
+              <h2 id="contact-title" data-testid="contact-title">Mari bertukar ide.</h2>
+              <p class="contact-copy" data-testid="contact-description">
+                Terbuka untuk diskusi, kolaborasi, dan kesempatan belajar di bidang
+                statistika, analisis data, maupun kegiatan akademik.
+              </p>
+              <div class="contact-bottom">
+                <button class="copy-button" type="button" id="copy-email" data-testid="copy-email-button">
+                  Salin email
+                </button>
+                <span class="copy-status" id="copy-status" aria-live="polite" data-testid="copy-email-status"></span>
+              </div>
+            </div>
+            <div class="contact-list">
+              <a class="contact-item" href="mailto:pangeran3ce@gmail.com" data-testid="contact-email-link">
+                <span class="contact-label">EMAIL</span>
+                <span class="contact-value">pangeran3ce@gmail.com</span>
+              </a>
+              <a class="contact-item" href="tel:+6281363702015" data-testid="contact-phone-link">
+                <span class="contact-label">TELEPON</span>
+                <span class="contact-value">+62 813-6370-2015</span>
+              </a>
+              <a class="contact-item" href="https://www.linkedin.com/in/pangeran-candraning-edhi-aa96683bb" target="_blank" rel="noreferrer" data-testid="contact-linkedin-link">
+                <span class="contact-label">LINKEDIN</span>
+                <span class="contact-value">Profil profesional ↗</span>
+              </a>
+              <a class="contact-item" href="https://github.com/Panca0901" target="_blank" rel="noreferrer" data-testid="contact-github-link">
+                <span class="contact-label">GITHUB</span>
+                <span class="contact-value">Panca0901 ↗</span>
+              </a>
+              <a class="contact-item" href="https://www.instagram.com/pangeran_ce3?dlrf=MTNyYWgit29wZHBqeA==" target="_blank" rel="noreferrer" data-testid="contact-instagram-link">
+                <span class="contact-label">INSTAGRAM</span>
+                <span class="contact-value">@pangeran_ce3 ↗</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="shell footer" data-testid="site-footer">
+      <span data-testid="footer-copyright">© <span id="current-year"></span> Pangeran Candraning Edhi</span>
+      <a href="#home" data-testid="footer-back-to-top-link">Kembali ke atas ↑</a>
+    </footer>
 
     <script>
-        function bukaHalaman(fungsi) {
-            const semuaHalaman = ['home', 'about', 'portfolio', 'profile'];
-            semuaHalaman.forEach(hlmn => {
-                document.getElementById('page-' + hlmn).classList.toggle("active", hlmn === fungsi);
-                document.getElementById('btn-' + hlmn).classList.toggle("active", hlmn === fungsi);
-            });
+      const filterButtons = document.querySelectorAll("[data-filter]");
+      const projectCards = document.querySelectorAll(".project-card");
+      const portfolioCount = document.querySelector("[data-testid='portfolio-count']");
+
+      filterButtons.forEach((button) => {
+        button.addEventListener("click", () => {
+          const activeFilter = button.dataset.filter;
+          let visibleCount = 0;
+
+          filterButtons.forEach((filterButton) => {
+            filterButton.setAttribute(
+              "aria-pressed",
+              String(filterButton === button),
+            );
+          });
+
+          projectCards.forEach((card) => {
+            const isVisible =
+              activeFilter === "all" || card.dataset.category === activeFilter;
+            card.hidden = !isVisible;
+            visibleCount += Number(isVisible);
+          });
+
+          portfolioCount.textContent = `${visibleCount} pengalaman`;
+        });
+      });
+
+      const meanSlider = document.querySelector("#mean-slider");
+      const sigmaSlider = document.querySelector("#sigma-slider");
+      const meanOutput = document.querySelector("#mean-output");
+      const sigmaOutput = document.querySelector("#sigma-output");
+      const curveLine = document.querySelector("#curve-line");
+      const curveFill = document.querySelector("#curve-fill");
+
+      function updateDistribution() {
+        const mean = Number(meanSlider.value);
+        const sigma = Number(sigmaSlider.value);
+        const left = 16;
+        const right = 464;
+        const baseline = 164;
+        const peakHeight = 124;
+        const samples = 100;
+        const points = [];
+
+        meanOutput.value = mean.toFixed(1);
+        sigmaOutput.value = sigma.toFixed(1);
+        meanOutput.textContent = mean.toFixed(1);
+        sigmaOutput.textContent = sigma.toFixed(1);
+
+        for (let index = 0; index <= samples; index += 1) {
+          const x = left + ((right - left) * index) / samples;
+          const value = ((x - left) / (right - left)) * 8 - 4;
+          const density = Math.exp(-0.5 * ((value - mean) / sigma) ** 2);
+          points.push([x, baseline - density * peakHeight]);
         }
+
+        const linePath = points
+          .map(([x, y], index) => `${index === 0 ? "M" : "L"}${x.toFixed(2)},${y.toFixed(2)}`)
+          .join(" ");
+        const fillPath = `${linePath} L${right},${baseline} L${left},${baseline} Z`;
+
+        curveLine.setAttribute("d", linePath);
+        curveFill.setAttribute("d", fillPath);
+      }
+
+      meanSlider.addEventListener("input", updateDistribution);
+      sigmaSlider.addEventListener("input", updateDistribution);
+      updateDistribution();
+
+      const copyEmailButton = document.querySelector("#copy-email");
+      const copyStatus = document.querySelector("#copy-status");
+
+      copyEmailButton.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText("pangeran3ce@gmail.com");
+          copyStatus.textContent = "Email berhasil disalin.";
+        } catch {
+          copyStatus.textContent = "Email: pangeran3ce@gmail.com";
+        }
+      });
+
+      document.querySelector("#current-year").textContent = new Date().getFullYear();
+
+      const navLinks = document.querySelectorAll(".nav-link");
+      const observedSections = document.querySelectorAll("main section[id]");
+      const sectionObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (!entry.isIntersecting) return;
+
+            navLinks.forEach((link) => {
+              link.classList.toggle(
+                "is-active",
+                link.getAttribute("href") === `#${entry.target.id}`,
+              );
+            });
+          });
+        },
+        { rootMargin: "-30% 0px -60% 0px" },
+      );
+
+      observedSections.forEach((section) => sectionObserver.observe(section));
     </script>
-</body>
+  </body>
 </html>
